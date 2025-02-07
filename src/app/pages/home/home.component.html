@@ -1,0 +1,162 @@
+<section class="relative h-[calc(100vh-80px)] overflow-hidden  ">
+
+
+  <owl-carousel-o [options]="heroOptions" class="h-full">
+
+    @for (item of ["t","tt","ttt"]; track $index) {
+
+    <ng-template carouselSlide>
+      <div class="relative h-screen">
+
+        <img [src]="'/images/unsplash_'+item+'.jpg'" class="absolute inset-0 object-cover  w-full h-full   "
+          alt="Essence website" />
+
+        <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-black/20"></div>
+
+        <div class="relative h-full flex items-center">
+
+          <div class=" ms-10 text-white text-center ">
+            <h2 class="text-6xl md:text-8xl font-bold mb-3  ">
+              Essence
+            </h2>
+            <p class="text-lg md:text-2xl font-light mb-4 ">
+              Magical essence in every product.
+            </p>
+          </div>
+
+
+        </div>
+
+      </div>
+    </ng-template>
+    }
+
+
+
+
+
+  </owl-carousel-o>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- old design -->
+<!-- <section class="">
+  <div class=" overflow-hidden border-b  grid md:grid-cols-[70%,minmax(0,1fr)]">
+
+    <div class="overflow-hidden">
+      <owl-carousel-o [options]="mainOptions">
+        @for ( slide of [1,2,3,4,5,6,7]; track $index) {
+        <ng-template carouselSlide>
+          <img [src]="'/images/img'+ slide + '.avif'" class="w-full h-[350px]" alt="Featured Product" />
+        </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+
+    <div class="hidden md:block">
+      <img src="/Essence.png" class="w-full h-[175px] object-cover" alt="Essence" />
+      <img src="/images/grocery-banner-2.jpeg" class="w-full h-[175px]" alt="grocery-banner" />
+    </div>
+
+  </div>
+</section> -->
+
+
+
+<div class="container mx-auto">
+  <section>
+    <div class="py-6 px-4 my-3">
+      <h2 class="text-4xl font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Categories</h2>
+
+      <div class="bg-gray-50 dark:bg-gray-900">
+        <owl-carousel-o [options]="customOptions">
+          @for (cat of allCategories ; track cat._id) {
+
+          <ng-template carouselSlide>
+            <div
+              class="relative h-[260px] group hover:shadow-lg overflow-hidden rounded-lg transition-all duration-300 dark:hover:shadow-gray-900/30">
+              <img [src]="cat.image" [alt]="cat.name"
+                class="w-full h-full transition-transform duration-500 group-hover:scale-105" />
+            </div>
+
+            <div class="p-3 text-center">
+              <h4 class="text-lg font-semibold text-[#855825] dark:text-gray-200 transition-colors">
+                {{ cat.name }}
+              </h4>
+            </div>
+          </ng-template>
+
+          }
+        </owl-carousel-o>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-4xl font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Products</h2>
+
+    <div class="grid justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      @for (pr of allProducts.slice(0,12); track pr.id) {
+      <div
+        class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
+        <!-- Image Section with Badge -->
+        <div class="relative overflow-hidden">
+          <a href="#">
+            <img class="w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
+              [src]="pr.imageCover" [alt]="pr.title" />
+          </a>
+          <!-- Favorite Button -->
+          <button
+            class="absolute top-3 right-3 size-11 bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
+            <i
+              class="fas fa-heart text-xl text-gray-400 group-hover:text-red-700 transition-colors group-hover:animate-pulse"></i>
+          </button>
+
+          <!-- New Badge -->
+        </div>
+
+        <!-- Product Details -->
+        <div class="p-5">
+          <!-- Category & Title -->
+          <div class="mb-2">
+            <span
+              class="text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
+              {{pr.category.name}}
+            </span>
+            <h3
+              class="text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
+              [title]="pr.title">
+              <a href="#">{{pr.title.split(" ",3).join(" ")}}</a>
+            </h3>
+          </div>
+
+          <!-- Price and Rating -->
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price}} EGP</span>
+            <div class="flex items-center space-x-1">
+              <i class="fas fa-star text-yellow-400"></i>
+              <span class="text-sm text-gray-500 dark:text-gray-400">{{pr.ratingsAverage}}</span>
+            </div>
+          </div>
+
+          <!-- Add to Cart Button -->
+          <button
+            class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-[#855825] rounded-lg hover:bg-[#6a4620] focus:ring-4 focus:ring-[#855825]/50 transition-colors">
+            <i class="fas fa-shopping-cart mr-2"></i>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+</div>
