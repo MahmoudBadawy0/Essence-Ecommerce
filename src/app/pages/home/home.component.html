@@ -108,7 +108,7 @@
   <section>
     <h2 class="text-4xl font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Products</h2>
 
-    <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 sm:gap-9">
+    <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-9">
       @for (pr of allProducts.slice(0,12); track pr.id) {
       <div
         class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
@@ -120,9 +120,9 @@
           </a>
           <!-- Favorite Button -->
           <button
-            class="absolute top-3 right-3 size-11 bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
+            class="absolute top-3 right-3 size-8  sm:size-11  bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
             <i
-              class="fas fa-heart text-xl text-gray-400 group-hover:text-red-700 transition-colors group-hover:animate-pulse"></i>
+              class="fas fa-heart text-xl sm:text-2xl text-gray-400 group-hover:text-red-700 transition-colors group-hover:animate-pulse"></i>
           </button>
 
           <!-- New Badge -->
@@ -132,12 +132,12 @@
         <div class="p-5">
           <!-- Category & Title -->
           <div class="mb-2">
-            <span
-              class="text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
+            <h4
+              class=" text-center w-fit  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
               {{pr.category.name}}
-            </span>
+            </h4>
             <h3
-              class="text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
+              class=" text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
               [title]="pr.title">
               <a href="#">{{pr.title.split(" ",3).join(" ")}}</a>
             </h3>
