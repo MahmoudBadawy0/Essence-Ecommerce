@@ -49,21 +49,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- old design -->
 <!-- <section class="">
   <div class=" overflow-hidden border-b  grid md:grid-cols-[70%,minmax(0,1fr)]">
@@ -123,7 +108,7 @@
   <section>
     <h2 class="text-4xl font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Products</h2>
 
-    <div class="grid justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+    <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 sm:gap-9">
       @for (pr of allProducts.slice(0,12); track pr.id) {
       <div
         class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
