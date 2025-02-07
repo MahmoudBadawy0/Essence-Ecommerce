@@ -12,6 +12,8 @@ export class AppComponent {
   constructor(private flowbiteService: FlowbiteService) {}
 
   ngOnInit(): void {
-    this.flowbiteService.loadFlowbite((flowbite) => {});
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      console.log('Run');
+    });
   }
 }
