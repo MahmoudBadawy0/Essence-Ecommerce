@@ -4,10 +4,11 @@ import { IProduct } from '../../shared/interfaces/iproduct';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule],
+  imports: [CarouselModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -78,8 +79,12 @@ export class HomeComponent implements OnInit {
     pullDrag: false,
     dots: false,
     nav: false,
-    items: 1,
     navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1,
+      },
+    },
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
   };

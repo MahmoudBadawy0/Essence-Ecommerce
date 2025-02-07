@@ -1,43 +1,61 @@
-<section class="relative h-[calc(100vh-80px)] overflow-hidden  ">
-
-
-  <owl-carousel-o [options]="heroOptions" class="h-full">
+<section>
+  <owl-carousel-o [options]="heroOptions">
 
     @for (item of ["t","tt","ttt"]; track $index) {
 
     <ng-template carouselSlide>
-      <div class="relative h-screen">
+
+      <div class="relative h-[calc(100vh-80px)] overflow-hidden">
 
         <img [src]="'/images/unsplash_'+item+'.jpg'" class="absolute inset-0 object-cover  w-full h-full   "
           alt="Essence website" />
 
         <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-black/20"></div>
 
-        <div class="relative h-full flex items-center">
+        <div class="relative h-full flex items-center justify-center   ">
 
-          <div class=" ms-10 text-white text-center ">
-            <h2 class="text-6xl md:text-8xl font-bold mb-3  ">
-              Essence
-            </h2>
-            <p class="text-lg md:text-2xl font-light mb-4 ">
-              Magical essence in every product.
+          <div
+            class=" px-7  py-9 rounded-3xl text-gray-100 text-center animate-fadeIn backdrop-blur-none   bg-white/10 shadow-sm">
+
+            <h1 class="text-4xl  md:text-6xl  font-bold opacity-0 animate-fadeIn ">Discover
+              <span class="text-[#855825]">Essence</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl opacity-0 font-light  animate-fadeIn mb-5 ">Experience the magic in
+              every product
             </p>
-          </div>
+            <a routerLink="/product"
+              class="px-3 py-2  opacity-0  animate-fadeIn md:px-6 md:py-3 bg-white text-black font-bold rounded-full shadow-lg hover:bg-gray-200  transition-colors ">
+              Get Started
+            </a>
 
+
+          </div>
 
         </div>
 
-      </div>
-    </ng-template>
-    
-  }
 
+
+      </div>
+
+    </ng-template>
+
+    }
 
   </owl-carousel-o>
 
-
-
 </section>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -76,6 +94,7 @@
       <h2 class="text-4xl font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Categories</h2>
 
       <div class="bg-gray-50 dark:bg-gray-900">
+
         <owl-carousel-o [options]="customOptions">
           @for (cat of allCategories ; track cat._id) {
 
@@ -95,7 +114,9 @@
 
           }
         </owl-carousel-o>
+
       </div>
+
     </div>
   </section>
 
