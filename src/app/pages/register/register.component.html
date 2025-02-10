@@ -1,1 +1,239 @@
-<p>register works!</p>
+<section class=" grid lg:grid-cols-2 min-h-[calc(100vh-80px)] pb-1 
+    ">
+
+  <div class="hidden lg:block relative bg-[#855825]">
+
+
+    <div class="absolute inset-0 bg-[url(/images/login.png)] bg-cover bg-center  opacity-80 "></div>
+
+    <div class="relative h-full flex flex-col justify-end p-14 space-y-8">
+      <div class="max-w-sm text-center self-center ">
+        <h1 class="mt-4 text-4xl font-bold text-white"> Welcome to Essence</h1>
+        <p class="text-xl text-white/90">
+          Discover the latest trends,
+          express your unique style.
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+  <div class="flex items-center justify-center p-8">
+    <div class="max-w-md w-full p-6 rounded-2xl shadow lg:rounded-none lg:shadow-none lg:p-0   space-y-4">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Create Account</h2>
+
+      <form [formGroup]="registerForm" (ngSubmit)="submitRegister()" class="space-y-4">
+
+        @if (msgError) {
+        <div class="flex py-2  px-3 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          role="alert">
+          <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+          </svg>
+          <span class="sr-only">Danger</span>
+          <div>
+            <span class="font-medium">Duplicate Account</span>
+            <p>
+              {{msgError}}:
+              <a routerLink="/login" class="  ms-2  rounded-lg hover:text-blue-700  text-gray-900 hover:underline
+              dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700
+              ">
+                Sign in
+              </a>
+            </p>
+          </div>
+        </div>
+
+        }
+
+        <div>
+          <label for="name" class="lb-auth">Full Name</label>
+          <input formControlName="name" id="name" type="text" placeholder="Enter your name" class="in-auth">
+
+          @let nameControl=registerForm.get('name');
+          @if (nameControl?.errors && nameControl?.touched) {
+          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+
+            <span class="sr-only">Danger</span>
+            <div>
+              <span class="font-medium">Ensure that these requirements are met:</span>
+              <ul class="mt-1.5 list-disc list-inside">
+                @if (nameControl?.getError('required')) {
+                <li>Name is required.</li>
+                }
+                @else if (nameControl?.getError('minlength')) {
+                <li>Name must be at least 3 characters long.</li>
+                }
+                @else if (nameControl?.getError('maxlength')) {
+                <li>Name cannot exceed 20 characters.</li>
+                }
+              </ul>
+            </div>
+          </div>
+          }
+
+        </div>
+
+
+        <div>
+          <label for="email" class="lb-auth">Email</label>
+          <input formControlName="email" id="email" type="email" placeholder="Enter your email" class="in-auth">
+
+          @let emailControl=registerForm.get('email');
+
+          @if (emailControl?.errors && emailControl?.touched) {
+          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+
+            <span class="sr-only">Danger</span>
+            <div>
+              <span class="font-medium">Ensure that these requirements are met:</span>
+              <ul class="mt-1.5 list-disc list-inside">
+                @if (emailControl?.getError('required')) {
+                <li>Email is required.</li>
+                }
+                @else if (emailControl?.getError('pattern')) {
+                <li>Invalid Format: "Please enter a valid email address."
+                </li>
+                }
+
+              </ul>
+            </div>
+          </div>
+          }
+
+        </div>
+
+        <div>
+          <label for="password" class="lb-auth">Password</label>
+          <input formControlName="password" id="password" type="password" placeholder="Password" class="in-auth">
+
+          @let passwordControl=registerForm.get('password');
+          @if (passwordControl?.errors && passwordControl?.touched) {
+          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+
+            <span class="sr-only">Danger</span>
+            <div>
+              <span class="font-medium">Ensure that these requirements are met:</span>
+              <ul class="mt-1.5 list-disc list-inside">
+                @if (passwordControl?.getError('required')) {
+                <li>Password is required.</li>
+                }
+                @else if (passwordControl?.getError('pattern')) {
+                <li>Password must be at least 8 characters, contain at least one uppercase letter and one special
+                  character.
+                </li>
+                }
+
+              </ul>
+            </div>
+          </div>
+          }
+
+        </div>
+
+        <div>
+          <label for="rePassword" class="lb-auth">rePassword</label>
+          <input formControlName="rePassword" id="rePassword" type="password" placeholder="Confirm Password"
+            class="in-auth">
+
+          @if (registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched) {
+          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+
+            <span class="sr-only">Danger</span>
+            <div>
+              <span class="font-medium">Ensure that these requirements are met:</span>
+              <ul class="mt-1.5 list-disc list-inside">
+                <li>Passwords do not match.</li>
+              </ul>
+            </div>
+          </div>
+          }
+
+
+        </div>
+
+        <div>
+          <label for="Phone" class="lb-auth">Phone</label>
+          <input formControlName="phone" id="Phone" type="tel" placeholder="Phone" class="in-auth">
+
+          @let phoneControl=registerForm.get('phone');
+
+          @if (phoneControl?.errors && phoneControl?.touched) {
+          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+
+            <span class="sr-only">Danger</span>
+            <div>
+              <span class="font-medium">Ensure that these requirements are met:</span>
+              <ul class="mt-1.5 list-disc list-inside">
+                @if (phoneControl?.getError('required')) {
+                <li>Phone number is required.</li>
+                }
+                @else if (phoneControl?.getError('pattern')) {
+                <li>Accept only Egypt phone numbers , start with 010, 011, 012, or 015.
+                </li>
+                }
+
+              </ul>
+            </div>
+          </div>
+          }
+
+
+        </div>
+
+        <button [disabled]="isLoading" type="submit" class="btn-auth">
+          @if (isLoading) {
+          <i class="fas fa-spinner  fa-spin me-2" aria-hidden="true"></i>
+          }
+
+          Sign Up
+        </button>
+
+        <p class="text-center text-gray-600 dark:text-gray-400">
+          Already have an account?
+          <a routerLink="/login" class="text-[#855825] hover:underline">Sign In</a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+
+
+</section>

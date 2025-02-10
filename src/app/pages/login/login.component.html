@@ -1,1 +1,168 @@
-<p>login works!</p>
+<section class=" grid lg:grid-cols-2 min-h-[calc(100vh-80px)] pb-1">
+  <div class="hidden lg:block relative bg-[#855825]">
+
+
+    <div class="absolute inset-0 bg-[url(/images/login.png)] bg-cover bg-center opacity-80"></div>
+    <div class="relative h-full flex flex-col justify-end p-14 space-y-8">
+      <div class="max-w-sm text-center self-center ">
+        <h1 class="mt-4 text-4xl font-bold text-white"> Welcome to Essence</h1>
+        <p class="text-xl text-white/90">
+          Discover the latest trends,
+          express your unique style.
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+
+  <div class="flex items-center  justify-center p-6">
+    <div class="max-w-md w-full p-6 rounded-2xl shadow lg:rounded-none lg:shadow-none lg:p-0   space-y-6">
+
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Welcome Back</h2>
+        <p class="mt-0 text-gray-600 dark:text-gray-400">
+          Access your Essence account
+        </p>
+
+      </div>
+
+      <form class="space-y-6" (ngSubmit)="submitLogin()" [formGroup]="loginForm">
+
+
+        @if (msgError) {
+        <div class="flex p-3 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          role="alert">
+          <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+          </svg>
+          <span class="sr-only">Danger</span>
+          <div>
+            <p>
+              {{msgError}}
+
+            </p>
+          </div>
+        </div>
+
+        }
+
+        <div>
+          <label for="email" class="lb-auth">Email</label>
+          <input formControlName="email" id="email" type="email" placeholder="Enter your email" class="in-auth">
+
+          @let emailControl=loginForm.get('email');
+
+          @if (emailControl?.errors && emailControl?.touched) {
+          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+
+            <span class="sr-only">Danger</span>
+            <div>
+              <span class="font-medium">Ensure that these requirements are met:</span>
+              <ul class="mt-1.5 list-disc list-inside">
+                @if (emailControl?.getError('required')) {
+                <li>Email is required.</li>
+                }
+                @else if (emailControl?.getError('pattern')) {
+                <li>Invalid Format: "Please enter a valid email address."
+                </li>
+                }
+
+              </ul>
+            </div>
+          </div>
+          }
+
+        </div>
+
+        <div>
+          <label for="password" class="lb-auth">Password</label>
+          <input formControlName="password" id="password" type="password" placeholder="Password" class="in-auth">
+
+          @let passwordControl=loginForm.get('password');
+          @if (passwordControl?.errors && passwordControl?.touched) {
+          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+
+            <span class="sr-only">Danger</span>
+            <div>
+              <span class="font-medium">Ensure that these requirements are met:</span>
+              <ul class="mt-1.5 list-disc list-inside">
+                @if (passwordControl?.getError('required')) {
+                <li>Password is required.</li>
+                }
+                @else if (passwordControl?.getError('pattern')) {
+                <li>Password must be at least 8 characters, contain at least one uppercase letter and one special
+                  character.
+                </li>
+                }
+
+              </ul>
+            </div>
+          </div>
+          }
+
+        </div>
+
+
+        <button [disabled]="isLoading" type="submit" class="btn-auth">
+          @if (isLoading) {
+          <i class="fas fa-spinner  fa-spin me-2" aria-hidden="true"></i>
+          }
+
+          Sign In
+        </button>
+
+        <!-- Social Login -->
+        <div class="flex items-center space-x-2">
+          <hr class="flex-1 border-gray-300 dark:border-gray-600">
+          <span class="text-gray-500 dark:text-gray-400 text-sm">OR</span>
+          <hr class="flex-1 border-gray-300 dark:border-gray-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+
+          <button type="button" class="flex items-center justify-center py-2.5 border border-gray-300 
+              rounded-lg hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700">
+            <i class="fab fa-google text-[#855825] mr-2"></i>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Google
+            </span>
+          </button>
+
+          <button type="button" class="flex items-center justify-center py-2.5 border border-gray-300 
+                                  rounded-lg hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700">
+            <i class="fab fa-facebook text-[#855825] mr-2"></i>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+              facebook
+            </span>
+          </button>
+        </div>
+
+
+        <p class="text-center text-gray-600 dark:text-gray-400">
+          Don't have an account?
+          <a routerLink="/register" class="text-[#855825] hover:underline">Sign Up</a>
+        </p>
+      </form>
+
+    </div>
+  </div>
+</section>
