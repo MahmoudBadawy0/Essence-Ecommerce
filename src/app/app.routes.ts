@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { BlankComponent } from './layouts/blank/blank.component';
+import { authGuard } from './core/guards/auth.guard';
+import { logedinGuard } from './core/guards/logedin.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,6 +26,7 @@ export const routes: Routes = [
           ),
       },
     ],
+    canActivate: [logedinGuard],
   },
 
   {
@@ -67,6 +70,15 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'details/:id',
+        title: 'Essence - Details',
+        loadComponent: () =>
+          import('./pages/details/details.component').then(
+            (m) => m.DetailsComponent
+          ),
+      },
+
+      {
         path: '**',
         title: 'Essence - NotFound',
         loadComponent: () =>
@@ -75,5 +87,6 @@ export const routes: Routes = [
           ),
       },
     ],
+    canActivate: [authGuard],
   },
 ];

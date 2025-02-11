@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environments } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +10,10 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) {}
 
   getAllProducts(): Observable<any> {
-    return this.httpClient.get(
-      'https://ecommerce.routemisr.com/api/v1/products'
-    );
+    return this.httpClient.get(`${environments.baseUrl}/api/v1/products`);
   }
 
   getSpecificProduct(id: string): Observable<any> {
-    return this.httpClient.get(
-      `https://ecommerce.routemisr.com/api/v1/products/${id}`
-    );
+    return this.httpClient.get(`${environments.baseUrl}/api/v1/products/${id}`);
   }
 }

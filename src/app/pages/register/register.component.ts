@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import {
   AbstractControl,
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -19,30 +20,68 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RegisterComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly formBuilder = inject(FormBuilder);
 
   isLoading: boolean = false;
   msgError: string = '';
 
-  registerForm: FormGroup = new FormGroup(
+  //?old
+  // registerForm: FormGroup = new FormGroup(
+  //   {
+  //     name: new FormControl(null, [
+  //       Validators.required,
+  //       Validators.minLength(3),
+  //       Validators.maxLength(20),
+  //     ]),
+  //     email: new FormControl(null, [
+  //       Validators.required,
+  //       Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/),
+  //     ]),
+  //     password: new FormControl(null, [
+  //       Validators.required,
+  //       Validators.pattern(/^(?=.*[A-Z])(?=.*[\W_]).{8,}$/),
+  //     ]),
+  //     rePassword: new FormControl(null),
+  //     phone: new FormControl(null, [
+  //       Validators.required,
+  //       Validators.pattern(/^01[0125][0-9]{8}$/),
+  //     ]),
+  //   },
+  //   { validators: this.confirmPassword }
+  // );
+
+  //?new better
+  registerForm: FormGroup = this.formBuilder.group(
     {
-      name: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(20),
-      ]),
-      email: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/),
-      ]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(/^(?=.*[A-Z])(?=.*[\W_]).{8,}$/),
-      ]),
-      rePassword: new FormControl(null),
-      phone: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(/^01[0125][0-9]{8}$/),
-      ]),
+      name: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
+      email: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+          ),
+        ],
+      ],
+      password: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[\W_]).{8,}$/),
+        ],
+      ],
+      rePassword: [null],
+      phone: [
+        null,
+        [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)],
+      ],
     },
     { validators: this.confirmPassword }
   );

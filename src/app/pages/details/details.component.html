@@ -1,1 +1,86 @@
-<p>details works!</p>
+@if (productDetails) {
+<section class="container mx-auto">
+
+  <div class="  mt-5  mx-auto p-5 bg-gray-50 dark:bg-gray-900 rounded-xl shadow-sm">
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Image Gallery Section -->
+      <div class="space-y-4">
+
+        <!-- old -->
+        <!-- div class="relative rounded-xl overflow-hidden ">
+          <img [src]=" selectedImage || productDetails.imageCover" class="w-full   object-contain h-[420px]  "
+            [alt]="productDetails.title">
+        </div>
+        -->
+
+
+        <div class="relative rounded-xl overflow-hidden flex items-center justify-center duration-1000">
+          <img [src]=" selectedImage || productDetails.imageCover" class="w-[400px] transition-all    h-[420px]  "
+            [alt]="productDetails.title">
+        </div>
+
+        <div class="grid grid-cols-4 gap-1 ">
+          @for (item of productDetails.images; track $index) {
+          <img [src]="item" (click)="changeImage(item)"
+            class=" object-cover h-[145px] w-full rounded-lg cursor-pointer border-2 border-transparent hover:border-[#855825] transition-colors">
+          }
+
+        </div>
+
+      </div>
+
+      <!-- Product Info Section -->
+      <div class="space-y-7 self-center md:border-l-2 md:pl-6 md:border-gray-200 dark:border-gray-700  ">
+
+        <div>
+          <h1 class="text-3xl font-bold dark:text-white mb-2">{{productDetails.title}}</h1>
+        </div>
+
+        <h4
+          class=" text-center w-fit   text-md text-[#855825] font-semibold  tracking-wide bg-[#855825]/10 px-3 py-1 rounded-full">
+          {{productDetails.category.name}}
+        </h4>
+
+
+        <div class="flex items-center justify-between ">
+          <p class="text-2xl font-bold text-[#855825] dark:text-[#c58d5a]">{{productDetails.price}} EGP</p>
+
+          <div class="flex items-center space-x-2">
+            <span class="text-gray-500 dark:text-gray-400">({{productDetails.ratingsAverage}})</span>
+
+            <i class="fas text-amber-400 fa-star"></i>
+
+          </div>
+
+        </div>
+
+
+        <div class="space-y-5">
+
+          <!-- Description Section -->
+          <div class=" space-y-3">
+            <h2 class="text-xl font-semibold dark:text-white">Product Description</h2>
+            <p class="text-gray-600 dark:text-gray-300">
+              {{productDetails.description}}
+            </p>
+
+
+          </div>
+
+          <div class="flex items-center gap-4">
+            <button class="flex-1 py-3 bg-[#855825] hover:bg-[#6a4620] text-white rounded-lg transition-colors">
+              <i class="fas fa-shopping-cart mr-2"></i>
+
+              Add to Cart
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+}

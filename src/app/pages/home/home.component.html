@@ -73,94 +73,94 @@
 
 
 
-<div class="container mx-auto">
-  <section>
-    <div class="py-6 px-4 my-3">
-      <h2 class="text-[32px] font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Categories</h2>
 
-      <div class="bg-gray-50 dark:bg-gray-900">
+<section class="container mx-auto">
+  <div class="py-6 px-4 my-3">
+    <h2 class="text-[32px] font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Categories</h2>
 
-        <owl-carousel-o [options]="customOptions">
-          @for (cat of allCategories ; track cat._id) {
+    <div class="bg-gray-50 dark:bg-gray-900">
 
-          <ng-template carouselSlide>
-            <div
-              class="relative h-[260px] group hover:shadow-lg overflow-hidden rounded-lg transition-all duration-300 dark:hover:shadow-gray-900/30">
-              <img [src]="cat.image" [alt]="cat.name"
-                class="w-full h-full transition-transform duration-500 group-hover:scale-105" />
-            </div>
+      <owl-carousel-o [options]="customOptions">
+        @for (cat of allCategories ; track cat._id) {
 
-            <div class="p-3 text-center">
-              <h4 class="text-lg font-semibold text-[#855825] dark:text-gray-200 transition-colors">
-                {{ cat.name }}
-              </h4>
-            </div>
-          </ng-template>
+        <ng-template carouselSlide>
+          <div
+            class="relative h-[260px] group hover:shadow-lg overflow-hidden rounded-lg transition-all duration-300 dark:hover:shadow-gray-900/30">
+            <img [src]="cat.image" [alt]="cat.name"
+              class="w-full h-full transition-transform duration-500 group-hover:scale-105" />
+          </div>
 
-          }
-        </owl-carousel-o>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <h2 class="text-4xl font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Products</h2>
-
-    <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-9">
-      @for (pr of allProducts.slice(0,12); track pr.id) {
-      <div
-        class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
-        <!-- Image Section with Badge -->
-        <div class="relative overflow-hidden">
-          <a href="#">
-            <img class="w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
-              [src]="pr.imageCover" [alt]="pr.title" />
-          </a>
-          <!-- Favorite Button -->
-          <button
-            class="absolute top-3 right-3 size-8  sm:size-11  bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
-            <i
-              class="fas fa-heart text-xl sm:text-2xl text-gray-400 group-hover:text-red-700 transition-colors group-hover:animate-pulse"></i>
-          </button>
-
-          <!-- New Badge -->
-        </div>
-
-        <!-- Product Details -->
-        <div class="p-5">
-          <!-- Category & Title -->
-          <div class="mb-2">
-            <h4
-              class=" text-center w-fit  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
-              {{pr.category.name}}
+          <div class="p-3 text-center">
+            <h4 class="text-lg font-semibold text-[#855825] dark:text-gray-200 transition-colors">
+              {{ cat.name }}
             </h4>
-            <h3
-              class=" text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
-              [title]="pr.title">
-              <a href="#">{{pr.title.split(" ",3).join(" ")}}</a>
-            </h3>
           </div>
+        </ng-template>
 
-          <!-- Price and Rating -->
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price}} EGP</span>
-            <div class="flex items-center space-x-1">
-              <i class="fas fa-star text-yellow-400"></i>
-              <span class="text-sm text-gray-500 dark:text-gray-400">{{pr.ratingsAverage}}</span>
-            </div>
-          </div>
+        }
+      </owl-carousel-o>
 
-          <!-- Add to Cart Button -->
-          <button
-            class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-[#855825] rounded-lg hover:bg-[#6a4620] focus:ring-4 focus:ring-[#855825]/50 transition-colors">
-            <i class="fas fa-shopping-cart mr-2"></i>
-            Add to Cart
-          </button>
-        </div>
-      </div>
-      }
     </div>
-  </section>
-</div>
+
+  </div>
+</section>
+
+<section class="container mx-auto">
+  <h2 class="text-4xl font-semibold text-center text-gray-900 dark:text-white mb-5">Popular Products</h2>
+
+  <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-9">
+    @for (pr of allProducts.slice(0,12); track pr.id) {
+    <div
+      class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
+      <!-- Image Section with Badge -->
+      <div class="relative overflow-hidden">
+        <a [routerLink]="['/details',pr.id]">
+          <img class="w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
+            [src]="pr.imageCover" [alt]="pr.title" />
+        </a>
+        <!-- Favorite Button -->
+        <button
+          class="absolute top-3 right-3 size-8  sm:size-11  bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
+          <i
+            class="fas fa-heart text-xl sm:text-2xl text-gray-400 group-hover:text-red-700 transition-colors group-hover:animate-pulse"></i>
+        </button>
+
+      </div>
+
+      <!-- Product Details -->
+      <div class="p-5">
+        <!-- Category & Title -->
+        <div class="mb-2">
+          <h4
+            class=" text-center w-fit  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
+            {{pr.category.name}}
+          </h4>
+          <h3
+            class=" text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
+            [title]="pr.title">
+            <a [routerLink]="['/details',pr.id]">{{pr.title.split(" ",3).join(" ")}}</a>
+          </h3>
+        </div>
+
+        <!-- Price and Rating -->
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price}} EGP</span>
+          <div class="flex items-center space-x-1">
+            <i class="fas fa-star text-yellow-400"></i>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{pr.ratingsAverage}}</span>
+          </div>
+        </div>
+
+        <!-- Add to Cart Button -->
+        <button
+          class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-[#855825] rounded-lg hover:bg-[#6a4620] focus:ring-4 focus:ring-[#855825]/50 transition-colors">
+          <i class="fas fa-shopping-cart mr-2"></i>
+          Add to Cart
+        </button>
+      </div>
+
+    </div>
+
+    }
+  </div>
+</section>

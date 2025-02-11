@@ -39,14 +39,20 @@ export class LoginComponent {
   submitLogin() {
     if (this.loginForm.valid) {
       this.isLoading = true;
-
       this.authService.sendLoginForm(this.loginForm.value).subscribe({
         next: (res) => {
           if (res.message === 'success') {
             setTimeout(() => {
+              //save token
+              localStorage.setItem('token', res.token);
+
+              //decode it
+              this.authService.tokenDecode();
+
               this.router.navigate(['/home']);
             }, 500);
           }
+
           this.isLoading = false;
         },
         error: (err: HttpErrorResponse) => {
