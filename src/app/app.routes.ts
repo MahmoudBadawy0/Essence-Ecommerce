@@ -85,6 +85,11 @@ export const routes: Routes = [
           import('./pages/details/details.component').then(
             (m) => m.DetailsComponent
           ),
+        data: {
+          prerender: {
+            renderMode: 'client-only', // Add this
+          },
+        },
       },
 
       {
