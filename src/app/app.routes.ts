@@ -6,7 +6,7 @@ import { logedinGuard } from './core/guards/logedin.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
+  // Authentication
   {
     path: '',
     component: AuthComponent,
@@ -25,10 +25,19 @@ export const routes: Routes = [
             (m) => m.RegisterComponent
           ),
       },
+      {
+        path: 'resetpassword',
+        title: 'Essence - Reset password',
+        loadComponent: () =>
+          import('./pages/forgotpassword/forgotpassword.component').then(
+            (m) => m.ForgotpasswordComponent
+          ),
+      },
     ],
     canActivate: [logedinGuard],
   },
 
+  // Blank
   {
     path: '',
     component: BlankComponent,

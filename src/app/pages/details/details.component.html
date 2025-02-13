@@ -23,9 +23,8 @@
         <div class="grid grid-cols-4 gap-1 ">
           @for (item of productDetails.images; track $index) {
           <img [src]="item" (click)="changeImage(item)"
-            class=" object-cover h-[145px] w-full rounded-lg cursor-pointer border-2 border-transparent hover:border-[#855825] transition-colors">
+            class=" object-contain h-[145px] w-full rounded-lg cursor-pointer border-2 border-transparent hover:border-[#855825] transition-colors">
           }
-
         </div>
 
       </div>

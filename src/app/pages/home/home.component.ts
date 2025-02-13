@@ -5,16 +5,20 @@ import { CategoriesService } from '../../core/services/categories/categories.ser
 import { ICategory } from '../../shared/interfaces/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
+import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, RouterLink],
+  imports: [CarouselModule, RouterLink, CurrencyPipe, SearchPipe,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   allProducts: IProduct[] = [];
   allCategories: ICategory[] = [];
+  searchInput:string=''
 
   private readonly productsService = inject(ProductsService);
   private readonly categoriesService = inject(CategoriesService);

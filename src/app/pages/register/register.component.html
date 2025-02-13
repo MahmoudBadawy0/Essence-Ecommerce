@@ -20,11 +20,12 @@
             <span class="font-medium">Duplicate Account</span>
             <p>
               {{msgError}}:
-              <a routerLink="/login" class="  ms-2  rounded-lg hover:text-blue-700  text-gray-900 hover:underline
+              <a routerLink="/login" class="  ms-1  rounded-lg hover:text-blue-700  text-gray-900 hover:underline
               dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700
               ">
                 Sign in
               </a>
+              now
             </p>
           </div>
         </div>
@@ -37,7 +38,8 @@
 
           @let nameControl=registerForm.get('name');
           @if (nameControl?.errors && nameControl?.touched) {
-          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          <div
+            class="flex py-2 px-3 my-1 text-sm items-center text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 20 20">
@@ -47,8 +49,7 @@
 
             <span class="sr-only">Danger</span>
             <div>
-              <span class="font-medium">Ensure that these requirements are met:</span>
-              <ul class="mt-1.5 list-disc list-inside">
+              <ul class="mt-1.5 list-none">
                 @if (nameControl?.getError('required')) {
                 <li>Name is required.</li>
                 }
@@ -73,7 +74,8 @@
           @let emailControl=registerForm.get('email');
 
           @if (emailControl?.errors && emailControl?.touched) {
-          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          <div
+            class="flex py-2 px-3 my-1 text-sm items-center text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 20 20">
@@ -83,13 +85,12 @@
 
             <span class="sr-only">Danger</span>
             <div>
-              <span class="font-medium">Ensure that these requirements are met:</span>
-              <ul class="mt-1.5 list-disc list-inside">
+              <ul class="mt-1.5 list-none">
                 @if (emailControl?.getError('required')) {
                 <li>Email is required.</li>
                 }
                 @else if (emailControl?.getError('pattern')) {
-                <li>Invalid Format: "Please enter a valid email address."
+                <li>Please enter a valid email address.
                 </li>
                 }
 
@@ -106,7 +107,8 @@
 
           @let passwordControl=registerForm.get('password');
           @if (passwordControl?.errors && passwordControl?.touched) {
-          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          <div
+            class="flex py-2 px-3 my-1 items-center text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 20 20">
@@ -116,8 +118,7 @@
 
             <span class="sr-only">Danger</span>
             <div>
-              <span class="font-medium">Ensure that these requirements are met:</span>
-              <ul class="mt-1.5 list-disc list-inside">
+              <ul class="mt-1.5 list-none">
                 @if (passwordControl?.getError('required')) {
                 <li>Password is required.</li>
                 }
@@ -135,12 +136,13 @@
         </div>
 
         <div>
-          <label for="rePassword" class="lb-auth">rePassword</label>
+          <label for="rePassword" class="lb-auth">Repeat password</label>
           <input formControlName="rePassword" id="rePassword" type="password" placeholder="Confirm Password"
             class="in-auth">
 
           @if (registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched) {
-          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          <div
+            class="flex py-2 px-3 my-1 items-center text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 20 20">
@@ -150,8 +152,7 @@
 
             <span class="sr-only">Danger</span>
             <div>
-              <span class="font-medium">Ensure that these requirements are met:</span>
-              <ul class="mt-1.5 list-disc list-inside">
+              <ul class="mt-1.5 list-none">
                 <li>Passwords do not match.</li>
               </ul>
             </div>
@@ -168,7 +169,8 @@
           @let phoneControl=registerForm.get('phone');
 
           @if (phoneControl?.errors && phoneControl?.touched) {
-          <div class="flex py-2 px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          <div
+            class="flex py-2 items-center  px-3 my-1 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 20 20">
@@ -178,8 +180,7 @@
 
             <span class="sr-only">Danger</span>
             <div>
-              <span class="font-medium">Ensure that these requirements are met:</span>
-              <ul class="mt-1.5 list-disc list-inside">
+              <ul class="mt-1.5 list-none">
                 @if (phoneControl?.getError('required')) {
                 <li>Phone number is required.</li>
                 }
@@ -200,7 +201,6 @@
           @if (isLoading) {
           <i class="fas fa-spinner  fa-spin me-2" aria-hidden="true"></i>
           }
-
           Sign Up
         </button>
 
