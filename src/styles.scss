@@ -2,8 +2,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
-@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+@import "ngx-owl-carousel-o/lib/styles/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/owl.theme.default";
 
 .btn-auth {
   @apply disabled:bg-gray-500 w-full py-3 bg-[#855825] hover:bg-[#6a4620] text-white rounded-lg transition-colors;
