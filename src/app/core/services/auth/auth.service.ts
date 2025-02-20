@@ -59,9 +59,4 @@ export class AuthService {
       data
     );
   }
-
-  
-
-
-
 }

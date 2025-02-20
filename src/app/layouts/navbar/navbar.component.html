@@ -1,9 +1,11 @@
 <nav
-  class="bg-gray-50 dark:bg-gray-900 border-b       fixed top-0 left-0 w-full z-50     border-gray-200 dark:border-gray-700">
-  <div class="max-w-screen-2xl flex  flex-wrap items-center justify-between mx-auto px-3 py-2">
-    <a routerLink="/home" class="flex items-center me-6 rtl:space-x-reverse">
-      <img src="/Preview_enhanced-modifcccccccccc.png" class="w-16" alt="Essence Logo" />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Essence</span>
+  class="bg-gray-50 dark:bg-gray-900 border-b  fixed top-0 left-0 w-full z-50     border-gray-200 dark:border-gray-700">
+  <div class="max-w-screen-2xl flex flex-wrap md:flex-nowrap  items-center justify-between mx-auto px-3 py-2">
+    <a routerLink="/home" class="flex items-center flex-col   lg:me-9 rtl:space-x-reverse">
+      <img src="/Preview_enhanced-modifcccccccccc.png" class="w-14" alt="Essence Logo" />
+      <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+        Essence
+      </span>
     </a>
 
     <button data-collapse-toggle="navbar-default" type="button"
@@ -19,12 +21,12 @@
     <div class="hidden w-full md:flex   items-center flex-grow md:w-auto" id="navbar-default">
       @if (isLogin()) {
       <ul
-        class="font-medium capitalize  shadow-black flex flex-col   p-3 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        class="font-medium capitalize items-center shadow-black flex flex-col   p-1.5 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <a routerLink="/home" routerLinkActive="nav-active shadow-sm shadow-black"
             class="block py-2 px-2 hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
             aria-current="page">
-            Home
+            {{'navbar.home'| translate}}
           </a>
         </li>
 
@@ -32,63 +34,126 @@
           <a routerLink="/product" routerLinkActive="nav-active shadow-sm shadow-black"
             class="block py-2 px-2 hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
             aria-current="page">
-            product
-          </a>
-        </li>
+            {{'navbar.product'| translate}}
 
-        <li>
-          <a routerLink="/cart" routerLinkActive="nav-active shadow-sm shadow-black"
-            class="block py-2 px-2 hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
-            aria-current="page">
-            Cart
           </a>
         </li>
 
         <li>
           <a routerLink="/categories" routerLinkActive="nav-active shadow-sm shadow-black"
-            class="block py-2 px-2 hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
+            class="block py-2 px-2 hover:bg-gray-100 text-center md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
             aria-current="page">
-            Categories
+            {{'navbar.categories'| translate}}
+
           </a>
         </li>
 
         <li>
           <a routerLink="/brands" routerLinkActive="nav-active shadow-sm shadow-black"
-            class="block py-2 px-2 hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
+            class="block py-2 px-2 text-center hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
             aria-current="page">
-            Brands
+            {{'navbar.brands'| translate}}
           </a>
         </li>
+
+        <li>
+          <a routerLink="/allorders" routerLinkActive=" shadow-sm shadow-[#855825]"
+            class="block hover:bg-gray-200  text-center rounded-lg p-2 text-sm  font-medium text-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+            aria-current="page">
+            {{'navbar.allOrders'| translate}}
+
+          </a>
+        </li>
+
+
       </ul>
       }
 
       <ul
-        class="font-medium ms-auto capitalize flex flex-col p-3 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        class="font-medium ms-auto  items-center capitalize flex flex-col p-1.5 mt-2 border border-gray-100 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <!-- lang -->
+        <li class="p-2">
+          <!-- Dropdown Trigger Button -->
+          <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+            class="flex items-center justify-between w-full py-2 px-3 text-gray-800 rounded-lg hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#855825] md:p-0 md:w-auto dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 md:dark:hover:bg-transparent transition-colors">
+            {{'navbar.lang'| translate}}
+            <!-- Dropdown Icon -->
+            <svg class="w-2.5 h-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="dropdownHover"
+            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-800 dark:divide-gray-600">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-300" aria-labelledby="dropdownNavbarLink">
+              <!-- Dropdown Items -->
+              <li>
+                <a role="button" (click)="change('ar')" [class.hidden]="currentLang('ar')"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors">
+                  AR
+                </a>
+              </li>
+              <li>
+                <a role="button" (click)="change('en')" [class.hidden]="currentLang('en')"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors">
+                  EN
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+
+
         @if (!isLogin()) {
 
+
         <li>
-          <a routerLink="/login"
+          <a routerLink="/login" routerLinkActive="bg-[#855825]/10 "
             class="block hover:bg-[#855825]/10  rounded-lg py-2 px-3 text-sm font-medium text-[#855825] dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
             aria-current="page">
-            <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+            <i class="fas fa-sign-in-alt me-2"></i>
+            {{'navbar.signIn'| translate}}
           </a>
         </li>
 
         <li>
-          <a routerLink="/register"
-            class="block hover:bg-[#6a4620] rounded-lg py-2 px-3 text-sm font-medium text-white bg-[#855825] md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+          <a routerLink="/register" routerLinkActive="bg-[#855825]  text-white"
+            class="block hover:bg-[#855825]  hover:text-white  rounded-lg py-2 px-3 text-sm font-medium text-[#855825] dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
             aria-current="page">
-            <i class="fas fa-user-plus mr-2"></i>Register
+            <i class="fas fa-user-plus me-2"></i>
+            {{'navbar.register'| translate}}
+
           </a>
         </li>
 
         }
         @else {
+
+
+
+
+
+
+
+        <li>
+          <a routerLink="/cart" routerLinkActive="nav-active "
+            class="block p-[6px] hover:bg-gray-100 md:hover:bg-transparent  hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
+            aria-current="page">
+            <i class="fa  text-lg fa-cart-shopping" aria-hidden="true"></i>
+          </a>
+        </li>
+
         <li>
           <a role="button" (click)="authService.logOut()"
-            class="block hover:bg-gray-200  rounded-lg py-2 px-3 text-sm  font-medium text-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+            class="block hover:bg-gray-200 text-center  rounded-lg py-3 px-3 text-sm  font-medium text-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
             aria-current="page">
-            <i class="fas fa-sign-out-alt mr-2"></i>Sign out
+            <i class="fas fa-sign-out-alt me-2"></i>
+            {{'navbar.signOut'| translate}}
+
           </a>
         </li>
         }

@@ -878,16 +878,16 @@
 
 
   <div class="hidden lg:block relative ">
-    <img src="/download_78.61166666666637.png" class="w-full " alt="">
+    <img src="/download_78.61166666666637.png" class="w-full " alt="welcome img">
   </div>
 
   <div class="flex items-center  justify-center p-6">
     <div class="max-w-md w-full p-6 rounded-2xl shadow lg:rounded-none lg:shadow-none lg:p-0   space-y-6">
 
       <div>
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Welcome Back</h2>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">{{'login.WELCOME_HEADER'| translate}}</h2>
         <p class="mt-0 text-gray-600 dark:text-gray-400">
-          Access your Essence account
+          {{'login.WELCOME_DESCRIPTION'| translate}}
         </p>
 
       </div>
@@ -914,7 +914,6 @@
           <div>
             <p>
               {{msgError}}
-
             </p>
           </div>
         </div>
@@ -922,8 +921,9 @@
         }
 
         <div>
-          <label for="email" class="lb-auth">Email</label>
-          <input formControlName="email" id="email" type="email" placeholder="Enter your email" class="in-auth">
+          <label for="email" class="lb-auth">{{'login.Email'| translate }}</label>
+          <input formControlName="email" id="email" type="email" placeholder="{{'login.emailPlaceholder'| translate }}"
+            class="in-auth">
 
           @let emailControl=loginForm.get('email');
 
@@ -941,10 +941,10 @@
             <div>
               <ul class="mt-1.5 list-none">
                 @if (emailControl?.getError('required')) {
-                <li>Email is required.</li>
+                <li>{{'login.emailRequired' | translate}}</li>
                 }
                 @else if (emailControl?.getError('pattern')) {
-                <li>Please enter a valid email address.
+                <li>{{'login.emailInvalid' | translate}}
                 </li>
                 }
 
@@ -963,10 +963,11 @@
 
 
 
-        
+
         <div>
-          <label for="password" class="lb-auth">Password</label>
-          <input formControlName="password" id="password" type="password" placeholder="Password" class="in-auth">
+          <label for="password" class="lb-auth">{{'login.PASSWORD'| translate }}</label>
+          <input formControlName="password" id="password" type="password"
+            placeholder="{{'login.passwordPlaceholder'| translate}}" class="in-auth">
 
           @let passwordControl=loginForm.get('password');
           @if (passwordControl?.errors && passwordControl?.touched) {
@@ -983,11 +984,10 @@
             <div>
               <ul class="mt-1.5 list-none">
                 @if (passwordControl?.getError('required')) {
-                <li>Password is required.</li>
+                <li>{{'login.passwordRequired' | translate }}</li>
                 }
                 @else if (passwordControl?.getError('pattern')) {
-                <li>Password must be at least 8 characters, contain at least one uppercase letter and one special
-                  character.
+                <li>{{'login.passwordComplexity' | translate }}
                 </li>
                 }
 
@@ -999,14 +999,15 @@
         </div>
 
         <div class="flex justify-end">
-          <a routerLink="/resetpassword" class="text-[#855825] hover:underline">Forgot password</a>
+          <a routerLink="/resetpassword" class="text-[#855825] hover:underline">{{'login.FORGOT_PASSWORD' |translate
+            }}</a>
         </div>
 
         <button [disabled]="isLoading" type="submit" class="btn-auth">
           @if (isLoading) {
           <i class="fas fa-spinner  fa-spin me-2" aria-hidden="true"></i>
           }
-          Sign In
+          {{'login.LOGIN_BUTTON'| translate }}
         </button>
 
         <!-- Social Login -->
@@ -1018,27 +1019,27 @@
 
         <div class="grid grid-cols-2 gap-3">
 
-          <button type="button" class="flex items-center justify-center py-2.5 border border-gray-300 
+          <button type="button" class="flex items-center  justify-center py-2.5 border border-gray-300 
               rounded-lg hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700">
-            <i class="fab fa-google text-[#855825] mr-2"></i>
-            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Google
+            <i class="fab fa-google  text-[#855825] mx-2"></i>
+            <span class="text-sm font-medium  text-gray-700 dark:text-gray-300">
+              {{'login.Google'| translate }}
             </span>
           </button>
 
           <button type="button" class="flex items-center justify-center py-2.5 border border-gray-300 
                                   rounded-lg hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700">
-            <i class="fab fa-facebook text-[#855825] mr-2"></i>
+            <i class="fab fa-facebook text-[#855825] mx-2"></i>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-              facebook
+              {{'login.facebook' | translate}}
             </span>
           </button>
         </div>
 
 
         <p class="text-center text-gray-600 dark:text-gray-400">
-          Don't have an account?
-          <a routerLink="/register" class="text-[#855825] hover:underline">Sign Up</a>
+          {{'login.NO_ACCOUNT'| translate }}
+          <a routerLink="/register" class="text-[#855825] hover:underline">{{'login.SIGN_UP'| translate }}</a>
         </p>
       </form>
 

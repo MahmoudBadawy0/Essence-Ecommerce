@@ -1,1 +1,86 @@
-<p>checkout works!</p>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()"
+  class="max-w-xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+  <!-- Form Header -->
+  <h2 class="text-2xl font-bold text-[#855825] dark:text-[#c58d5a] mb-6">Complete Your Order</h2>
+
+  <!-- Details Field -->
+  <div class="mb-6">
+    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      details
+      <span class="text-red-500">*</span>
+    </label>
+    <textarea formControlName="details" rows="4"
+      class="w-full px-4 py-3 border rounded-lg focus:ring-[#855825] focus:border-[#855825] dark:bg-gray-700 dark:border-gray-600"
+      placeholder="Details..."></textarea>
+    @let detailsControl=checkoutForm.get('details'); @if (detailsControl?.errors && detailsControl?.touched) {
+    <div>
+      @if (detailsControl?.getError('required')) {
+      <div class="text-red-500 text-sm mt-1">
+        Details is required.
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- Phone & City Group -->
+  <div class="grid md:grid-cols-2 gap-6 mb-6">
+    <!-- Phone Number -->
+    <div>
+      <label for="phone" class="lb-auth">
+        Phone Number
+        <span class="text-red-500">*</span>
+      </label>
+      <input type="tel" id="phone" formControlName="phone" class="in-auth" placeholder="01010700999" />
+
+      @let PhoneControl=checkoutForm.get('phone'); @if (PhoneControl?.errors && PhoneControl?.touched) {
+      <div>
+        @if (PhoneControl?.getError('required')) {
+        <div class="text-red-500 text-sm mt-1">
+          phone number is required.
+        </div>
+        } @else if (PhoneControl?.getError('pattern')) {
+        <div class="text-red-500 text-sm mt-1">
+          Please enter a valid Egyptian phone number (e.g. 01012345678)
+        </div>
+        }
+      </div>
+
+      }
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        City
+        <span class="text-red-500">*</span>
+      </label>
+      <select formControlName="city"
+        class="w-full px-4 py-3 border rounded-lg focus:ring-[#855825] focus:border-[#855825] dark:bg-gray-700 dark:border-gray-600">
+        <option value="" selected>Select your city</option>
+        @for (gr of egyptGovernorates; track $index) {
+        <option>{{gr}}</option>
+        }
+      </select>
+
+      @let cityControl=checkoutForm.get('city'); @if (cityControl?.errors && cityControl?.touched) {
+      <div>
+        @if (cityControl?.getError('required')) {
+        <div class="text-red-500 text-sm mt-1">
+          Please select your city
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="isLoading" class="btn-auth">
+    @if (isLoading) {
+    <i class="fas fa-spinner fa-spin me-2" aria-hidden="true"></i>
+    } Confirm Order
+  </button>
+
+
+
+</form>

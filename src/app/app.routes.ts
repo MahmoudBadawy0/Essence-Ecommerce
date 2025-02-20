@@ -79,17 +79,31 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'allorders',
+        title: 'Essence - All Orders',
+        loadComponent: () =>
+          import('./pages/allorders/allorders.component').then(
+            (m) => m.AllordersComponent
+          ),
+      },
+
+      {
         path: 'details/:id',
         title: 'Essence - Details',
         loadComponent: () =>
           import('./pages/details/details.component').then(
             (m) => m.DetailsComponent
           ),
-        data: {
-          prerender: {
-            renderMode: 'client-only', // Add this
-          },
-        },
+        
+      },
+
+      {
+        path: 'checkout/:payType/:CartId',
+        title: 'Essence - Checkout',
+        loadComponent: () =>
+          import('./pages/checkout/checkout.component').then(
+            (m) => m.CheckoutComponent
+          ),
       },
 
       {

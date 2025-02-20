@@ -9,10 +9,11 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-forgotpassword',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TranslatePipe],
   templateUrl: './forgotpassword.component.html',
   styleUrl: './forgotpassword.component.scss',
 })
@@ -131,7 +132,7 @@ export class ForgotpasswordComponent {
 
   goBack() {
     if (this.step == 2 || this.step == 3) {
-      this.step=1;
+      this.step = 1;
       this.verifyEmail.get('email')?.patchValue(null);
       this.verifyCode.get('resetCode')?.patchValue(null);
     }

@@ -1,0 +1,202 @@
+{
+  "navbar": {
+    "home": "Home",
+    "product": "Product",
+    "categories": "Categories",
+    "brands": "Brands",
+    "signIn": "Sign In",
+    "register": "Register",
+    "allOrders": "All Orders",
+    "cart": "Cart",
+    "signOut": "Sign Out",
+    "lang": "lang"
+  },
+  "footer": {
+    "slogan": "Magical essence in every product.",
+    "getApp": "Get The Essence App",
+    "appDescription": "We will send you a link.",
+    "emailPlaceholder": "Enter your email",
+    "getLink": "Get App Link",
+    "quickLinks": "Quick Links",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "faq": "FAQ",
+    "followUs": "Follow Us",
+    "paymentPartners": "Payment Partners",
+    "copyright": "© 2025 Mahmoud Badawy. All Rights Reserved.",
+    "social": {
+      "facebook": "Facebook",
+      "whatsapp": "WhatsApp",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "login": {
+    "WELCOME_HEADER": "Welcome Back",
+    "WELCOME_DESCRIPTION": "Access your Essence account",
+    "Email": "Email",
+    "PASSWORD": "Password",
+    "REMEMBER_ME": "Remember me",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "LOGIN_BUTTON": "Sign In",
+    "NO_ACCOUNT": "Don't have an account?",
+    "SIGN_UP": "Sign Up",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Password",
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Please enter a valid email address.",
+    "passwordRequired": "Password is required.",
+    "facebook": "Facebook",
+    "Google": "Google",
+    "passwordComplexity": "Password must be at least 8 characters, contain one uppercase letter and one special character."
+  },
+  "register": {
+    "title": "Create Account",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Password",
+    "rePasswordLabel": "Repeat password",
+    "rePasswordPlaceholder": "Confirm Password",
+    "phoneLabel": "Phone",
+    "submit": "Sign Up",
+    "existingAccount": "Already have an account?",
+    "signInLink": "Sign In",
+    "welcomeTitle": "Welcome to Essence",
+    "welcomeText": "Discover the latest trends, express your unique style.",
+    "duplicateAccount": "Duplicate Account",
+    "signInNow": "Sign in now",
+    "nameRequired": "Name is required.",
+    "nameLength": "Name must be between 3-20 characters.",
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Please enter a valid email address.",
+    "passwordRequired": "Password is required.",
+    "passwordComplexity": "Password must be at least 8 characters, contain one uppercase letter and one special character.",
+    "passwordMismatch": "Passwords do not match.",
+    "phoneRequired": "Phone number is required.",
+    "phoneInvalid": "Accept only Egypt phone numbers starting with 010, 011, 012, or 015."
+  },
+  "home": {
+    "title": "Elevate Your Home with",
+    "subtitle": "Experience the magic in every product",
+    "cta": "Get Started",
+    "headingCategories": "Popular Categories",
+    "headingProducts": "Popular Products",
+    "placeholder": "Search products...",
+    "addToCart": "Add to Cart"
+  },
+  "forgotPassword": {
+    "pTitle": "Reset Your Password",
+    "pSubtitle": "Please enter your email to send a verification code",
+    "emailLabel": "Email",
+    "pButton": "Send Verification Code",
+
+    "cTitle": "Verify Code",
+    "cSubtitle": "Please enter the verification code sent to your email",
+    "codeLabel": "Verification Code",
+    "placeholder": "Enter 6-digit code",
+    "cButton": "Verify Code",
+
+    "nTitle": "Set New Password",
+    "nSubtitle": "Please enter your new password. Ensure it differs from previous ones for security",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "New Password",
+    "nButton": "Reset Password",
+
+    "rememberPassword": "Remember your password?",
+    "loginLink": "Login here",
+    "back": "Back",
+
+    "Email_required": "Email is required",
+    "Email_invalid": "Please enter a valid email",
+
+    "Code_required": "Code is required",
+    "Code_invalid": "Must be 6 characters",
+
+    "Password_required": "Password is required",
+    "Password_complexity": "Password must be at least 8 characters with 1 uppercase and 1 special character",
+
+    "generic": "An error occurred"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "clearCart": "Clear Cart",
+    "moveToWishlist": "Move to Wishlist",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "orderSummary": "Order Summary",
+    "items": "Items ",
+    "delivery": "Delivery",
+    "free": "FREE",
+    "total": "Total",
+    "payOnline": "Pay Online",
+    "cashOnDelivery": "Cash On Delivery",
+    "continueShopping": "Continue Shopping",
+    "emptyCart": {
+      "title": "Your Cart Is Empty",
+      "message": "Looks like you haven't added any items yet. Let's find something special!",
+      "button": "Explore Our Collection"
+    }
+  },
+  "orders": {
+    "title": "All Orders",
+    "orderNumber": "Order ",
+    "paymentMethod": "Payment Method",
+    "deliveryTo": "Delivery to",
+    "status": "Status",
+    "delivered": "Delivered ",
+    "pending": "Pending ",
+    "paid": "Paid ",
+    "total": "Total",
+    "unpaid": "Unpaid ",
+    "noOrders": {
+      "title": "No Orders Found",
+      "message": "You haven't placed any orders yet.",
+      "button": "Start Shopping"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Your One-Stop Shopping Destination",
+      "subtitle": "Discover Endless Possibilities"
+    },
+    "about": {
+      "title": "Who We Are",
+      "description": "We're more than just an online store - we're your trusted shopping partner. Founded with the vision to simplify online shopping, we curate quality products across categories to bring you exceptional value and convenience.",
+      "features": {
+        "products": {
+          "title": "20,000+ Products",
+          "description": "Carefully selected items across categories"
+        },
+        "security": {
+          "title": "Secure Shopping",
+          "description": "100% protected payments and data privacy"
+        },
+        "curation": {
+          "title": "Expert Curation",
+          "description": "4.8/5 star rated products verified by 10,000+ customers"
+        }
+      }
+    },
+    "whyChoose": {
+      "title": "Why Choose Essence?",
+      "features": {
+        "delivery": {
+          "title": "Fast Delivery",
+          "description": "Reliable shipping to your doorstep"
+        },
+        "returns": {
+          "title": "Easy Returns",
+          "description": "30-day hassle-free return policy"
+        },
+        "support": {
+          "title": "24/7 Support",
+          "description": "Always here to help you"
+        }
+      }
+    },
+    "closing": "Join 500,000+ savvy shoppers who trust us for their everyday needs. Explore our carefully curated collection across fashion, electronics, home essentials, and lifestyle goods - all designed to transform your shopping experience into moments of joy and convenience"
+  }
+}

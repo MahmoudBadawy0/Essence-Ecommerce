@@ -30,10 +30,15 @@
               }
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-clip-rotate.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/flowbite/dist/flowbite.min.js"],
+            "scripts": [
+              "node_modules/flowbite/dist/flowbite.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.min.js"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {

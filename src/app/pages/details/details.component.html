@@ -68,10 +68,23 @@
           </div>
 
           <div class="flex items-center gap-4">
-            <button class="flex-1 py-3 bg-[#855825] hover:bg-[#6a4620] text-white rounded-lg transition-colors">
+            <button (click)="addToCart()" [disabled]="isLoading"
+              class="flex-1 py-3 bg-[#855825] hover:bg-[#6a4620] text-white rounded-lg transition-colors disabled:cursor-not-allowed disabled:bg-gray-500">
+              @if (isLoading) {
+              <div class="flex gap-2 items-center justify-center">
+                <div class="w-4 h-4 rounded-full animate-pulse bg-white"></div>
+                <div class="w-4 h-4 rounded-full animate-pulse bg-white"></div>
+                <div class="w-4 h-4 rounded-full animate-pulse bg-white"></div>
+              </div>
+              }
+              @else {
               <i class="fas fa-shopping-cart mr-2"></i>
-
               Add to Cart
+              }
+
+
+
+
             </button>
           </div>
 

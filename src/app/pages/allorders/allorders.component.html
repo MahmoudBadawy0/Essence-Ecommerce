@@ -1,0 +1,141 @@
+@if (allOrders.length>0) {
+<div class=" mx-auto p-5">
+  <!-- Header -->
+  <div class="text-center  mb-4 sm:mb-8">
+    <h1 class=" text-2xl sm:text-3xl font-bold text-[#855825]">{{'orders.title'|translate }} </h1>
+  </div>
+
+  <div class=" grid grid-cols-2  lg:grid-cols-3 gap-4">
+    @for (or of allOrders; track or._id) {
+    <div class="p-4 sm:p-6 bg-gray-50 border-2 border-gray-100 rounded-lg  hover:shadow-lg transition-shadow">
+      <!-- Header -->
+
+      <div class="text-center mb-4">
+        <div class="text-xl font-bold text-[#855825]">Essence</div>
+        <div class="text-xs text-gray-500">{{'orders.orderNumber'|translate }} #{{or.id}}</div>
+        <div class="text-xs text-gray-500">{{or.createdAt| date }}</div>
+      </div>
+
+      <!-- Items -->
+      <div class="grid grid-cols-2 sm:grid-cols-3  gap-3">
+        @for (item of or.cartItems; track item._id) {
+        <div class="group relative">
+          <img class=" w-full h-24 object-contain rounded-lg  p-2" [src]="item.product.imageCover"
+            [alt]="item.product.title">
+          <div class="text-xs mt-2 text-center">
+            <p class="font-medium text-gray-700 dark:text-gray-200">{{item.product.title.split(" ",2).join(' ')}}
+              x{{item.count}}</p>
+            <p class="text-[#855825] dark:text-[#c58d5a] font-mono">{{item.count * item.price | currency:'EGP ' }}</p>
+          </div>
+        </div>
+        }
+      </div>
+
+
+      <!-- Divider -->
+      <div class="h-px bg-gray-200 dark:bg-gray-700 my-4"></div>
+
+      <!-- Details -->
+      <div class="text-sm space-y-2">
+        <!-- Payment Method -->
+
+        <div class="flex justify-between">
+          <span class="text-gray-600">{{'orders.paymentMethod'|translate }}</span>
+          <span class="font-medium">{{or.paymentMethodType}}</span>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="flex justify-between">
+          <span class="text-gray-600">{{'orders.deliveryTo'|translate }}</span>
+          <span class="text-right">{{or.shippingAddress.city}}<br>{{or.shippingAddress.phone}}</span>
+        </div>
+
+        <!-- Status Indicators -->
+        <div class="flex justify-between">
+          <span class="text-gray-600 dark:text-gray-400">{{'orders.status'|translate}}</span>
+          <div class="flex items-center space-x-2">
+            <div
+              [class]="or.isDelivered ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' : 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'"
+              class="px-2 py-1 rounded-full text-xs font-medium">
+              {{or.isDelivered ? "{{'orders.delivered'|translate }} ✔" : "{{'orders.pending'|translate }} ❌"}}
+            </div>
+            <div
+              [class]="or.isPaid ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' : 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'"
+              class="px-2 py-1 rounded-full text-xs font-medium">
+              {{or.isPaid ? "{{'orders.paid'|translate }} ✔" : "{{'orders.unpaid'|translate }} ❌"}}
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+      <!-- Total -->
+      <div class="mt-6 pt-4 border-t border-gray-200">
+        <div class="flex justify-between font-semibold">
+          <span>{{'orders.total'|translate }}</span>
+          <span class="text-[#855825]">{{or.totalOrderPrice | currency:'EGP '}}</span>
+        </div>
+      </div>
+
+    </div>
+    }
+
+  </div>
+
+
+</div>
+}
+@else {
+<div class=" mx-auto px-4 py-16 text-center">
+  <div class="space-y-6">
+    <!-- Animated Cart Icon -->
+    <div class="relative flex items-center justify-center mx-auto w-20 h-20">
+      <div class="absolute  inset-0 bg-[#855825]/20 rounded-full animate-pulse">
+      </div>
+      <i class="fas fa-box-open text-4xl text-[#855825] dark:text-[#c58d5a] "></i>
+    </div>
+
+    <!-- Message -->
+    <div class="space-y-3">
+      <h2 class="text-3xl font-bold text-[#855825] dark:text-[#c58d5a]">
+        {{'orders.noOrders.title'|translate }}
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+        {{'orders.noOrders.message'|translate }}
+      </p>
+    </div>
+
+    <!-- Action Button -->
+    <button routerLink="/product" class="px-8 py-3 bg-[#855825] hover:bg-[#6a4620] text-white rounded-full 
+                transition-all transform hover:scale-105 shadow-lg">
+      {{'orders.noOrders.button'|translate }}
+    </button>
+
+    <!-- Decorative Elements -->
+    <div dir="ltr" class="mt-12 opacity-25 space-y-4">
+
+      <div class=" flex justify-center items-center space-x-8 animate-pulse">
+        <div class="w-8 h-8 bg-[#855825]/40 rounded-full"></div>
+        <div class="w-12 h-12 bg-[#c58d5a]/40 rounded-lg rotate-45"></div>
+        <div class="w-8 h-8 bg-[#855825]/40 rounded-full"></div>
+      </div>
+
+      <div class="flex justify-center space-x-6  ">
+        <div class="w-16 h-1 bg-[#c58d5a]/30 rounded-full  "></div>
+        <div class="w-16 h-1 bg-[#855825]/30 rounded-full  "></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+}

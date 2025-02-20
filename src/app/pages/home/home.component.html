@@ -17,16 +17,15 @@
           <div
             class=" px-7  py-9 rounded-3xl text-gray-100 text-center animate-fadeIn backdrop-blur-none   bg-white/10 shadow-sm">
 
-            <h1 class="text-4xl  md:text-6xl  font-bold opacity-0 animate-fadeIn ">Elevate Your Home with
+            <h1 class="text-4xl  md:text-6xl  font-bold opacity-0 animate-fadeIn ">{{'home.title' | translate}}
               <span class="text-[#855825] block">Essence</span>
             </h1>
 
-            <p class="text-lg md:text-2xl opacity-0 font-light  animate-fadeIn mb-5 ">Experience the magic in
-              every product
+            <p class="text-lg md:text-2xl opacity-0 font-light  animate-fadeIn mb-5 ">{{'home.subtitle' | translate}}
             </p>
             <a routerLink="/product"
               class="px-3 py-2  opacity-0  animate-fadeIn md:px-6 md:py-3 bg-white text-black font-bold rounded-full shadow-lg hover:bg-gray-200  ">
-              Get Started
+              {{'home.cta'|translate }}
             </a>
 
 
@@ -72,11 +71,10 @@
 </section> -->
 
 
-
-
 <section class="container mx-auto">
   <div class="py-6 px-4 my-3">
-    <h2 class="text-[32px] font-semibold  text-gray-900 dark:text-white mb-5">Popular Categories</h2>
+    <h2 class="text-[32px] font-semibold  text-gray-900 dark:text-white mb-5">{{'home.headingCategories'|translate}}
+    </h2>
 
     <div class="bg-gray-50 dark:bg-gray-900">
 
@@ -106,7 +104,7 @@
 </section>
 
 <section class="container mx-auto">
-  <h2 class="text-4xl font-semibold  text-gray-900 dark:text-white mb-5">Popular Products</h2>
+  <h2 class="text-4xl font-semibold  text-gray-900 dark:text-white mb-5">{{'home.headingProducts'|translate}}</h2>
 
   <!-- product-search-->
   <div class="max-w-2xl mx-auto mb-8">
@@ -119,7 +117,8 @@
       </div>
 
       <!-- Search Input -->
-      <input type="search" [(ngModel)]="searchInput" placeholder="Search products..." aria-label="Search products"
+      <input type="search" [(ngModel)]="searchInput" placeholder="{{'home.placeholder'|translate}}"
+        aria-label="Search products"
         class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#855825] focus:ring-1 focus:ring-[#855825]/40 transition-all">
 
 
@@ -162,7 +161,7 @@
 
         <!-- Price and Rating -->
         <div class="flex items-center justify-between mb-4">
-          <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price | currency:"EGP" }}</span>
+          <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price | currency:"EGP " }}</span>
           <div class="flex items-center space-x-1">
             <i class="fas fa-star text-yellow-400"></i>
             <span class="text-sm text-gray-500 dark:text-gray-400">{{pr.ratingsAverage}}</span>
@@ -170,10 +169,10 @@
         </div>
 
         <!-- Add to Cart Button -->
-        <button
+        <button (click)="addToCart(pr.id)"
           class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-[#855825] rounded-lg hover:bg-[#6a4620] focus:ring-4 focus:ring-[#855825]/50 transition-colors">
           <i class="fas fa-shopping-cart mr-2"></i>
-          Add to Cart
+          {{'home.addToCart'|translate}}
         </button>
       </div>
 
@@ -181,4 +180,7 @@
 
     }
   </div>
+
+  <app-topbtn></app-topbtn>
+
 </section>
