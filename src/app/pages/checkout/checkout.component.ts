@@ -18,7 +18,6 @@ export class CheckoutComponent implements OnInit {
   cartId: string = '';
   payType: string = '';
   isLoading: boolean = false;
-
   egyptGovernorates: string[] = [
     'Cairo',
     'Giza',

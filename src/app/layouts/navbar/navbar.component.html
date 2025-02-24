@@ -21,7 +21,7 @@
     <div class="hidden w-full md:flex   items-center flex-grow md:w-auto" id="navbar-default">
       @if (isLogin()) {
       <ul
-        class="font-medium capitalize items-center shadow-black flex flex-col   p-1.5 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        class="font-medium capitalize space-y-3 sm:space-y-0 items-center shadow-black flex flex-col   p-1.5 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <a routerLink="/home" routerLinkActive="nav-active shadow-sm shadow-black"
             class="block py-2 px-2 hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
@@ -39,20 +39,28 @@
           </a>
         </li>
 
-        <li>
+        <!-- <li>
           <a routerLink="/categories" routerLinkActive="nav-active shadow-sm shadow-black"
             class="block py-2 px-2 hover:bg-gray-100 text-center md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
             aria-current="page">
             {{'navbar.categories'| translate}}
-
           </a>
-        </li>
+        </li> -->
 
         <li>
           <a routerLink="/brands" routerLinkActive="nav-active shadow-sm shadow-black"
             class="block py-2 px-2 text-center hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
             aria-current="page">
             {{'navbar.brands'| translate}}
+          </a>
+        </li>
+
+
+        <li>
+          <a routerLink="/about" routerLinkActive="nav-active shadow-sm shadow-black"
+            class="block py-2 px-2 text-center hover:bg-gray-100 md:hover:bg-transparent text-gray-800 hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
+            aria-current="page">
+            {{'navbar.about'| translate}}
           </a>
         </li>
 
@@ -70,9 +78,9 @@
       }
 
       <ul
-        class="font-medium ms-auto  items-center capitalize flex flex-col p-1.5 mt-2 border border-gray-100 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        class="font-medium ms-auto  space-y-3 sm:space-y-0 items-center capitalize flex flex-col p-1.5 mt-2 border border-gray-100 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <!-- lang -->
-        <li class="p-2">
+        <li class="p-2 me-2">
           <!-- Dropdown Trigger Button -->
           <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
             class="flex items-center justify-between w-full py-2 px-3 text-gray-800 rounded-lg hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#855825] md:p-0 md:w-auto dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 md:dark:hover:bg-transparent transition-colors">
@@ -134,16 +142,23 @@
         @else {
 
 
-
-
-
-
+        <li>
+          <a routerLink="/wishlist" routerLinkActive="text-[#855825]"
+            class="block p-[6px] sm:me-3 relative hover:bg-gray-100 md:hover:bg-transparent   hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
+            aria-current="page">
+            <i class="fa fa-heart text-[22px]" aria-hidden="true"></i>
+            <span
+            class="bg-yellow-800 text-white text-xs font-medium absolute top-0  px-2 py-1 rounded-full ">{{wishlistCount()}}</span>
+          </a>
+        </li>
 
         <li>
-          <a routerLink="/cart" routerLinkActive="nav-active "
-            class="block p-[6px] hover:bg-gray-100 md:hover:bg-transparent  hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
+          <a routerLink="/cart" routerLinkActive="text-[#855825] "
+            class="block sm:me-2.5 relative p-[6px] hover:bg-gray-100 md:hover:bg-transparent  hover:text-[#855825] rounded md:bg-transparent dark:text-white md:dark:hover:text-[#855825] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-colors"
             aria-current="page">
-            <i class="fa  text-lg fa-cart-shopping" aria-hidden="true"></i>
+            <i class="fa  text-xl fa-cart-shopping" aria-hidden="true"></i>
+            <span
+              class="bg-yellow-800 text-white text-xs font-medium absolute top-0  px-2 py-1 rounded-full ">{{cartCount()}}</span>
           </a>
         </li>
 

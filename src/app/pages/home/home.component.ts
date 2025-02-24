@@ -1,5 +1,12 @@
 import Swal from 'sweetalert2';
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { ProductsService } from '../../core/services/products/products.service';
 import { IProduct } from '../../shared/interfaces/iproduct';
 import { CategoriesService } from '../../core/services/categories/categories.service';
@@ -13,6 +20,7 @@ import { CartService } from '../../core/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { TopbtnComponent } from '../../shared/components/ui/topbtn/topbtn.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -20,18 +28,23 @@ import { TranslatePipe } from '@ngx-translate/core';
     CarouselModule,
     RouterLink,
     CurrencyPipe,
-    SearchPipe,
     FormsModule,
-    TopbtnComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  allProducts: IProduct[] = [];
-  allCategories: ICategory[] = [];
+export class HomeComponent implements OnInit, OnDestroy {
+  // allProducts: IProduct[] = [];
+  allProducts: WritableSignal<IProduct[]> = signal([]);
+
+  // allCategories: ICategory[] = [];
+  allCategories: WritableSignal<ICategory[]> = signal([]);
+
   searchInput: string = '';
+
+  allProductsUnsubscribe: Subscription = new Subscription();
+  allCategoriesUnsubscribe: Subscription = new Subscription();
 
   private readonly productsService = inject(ProductsService);
   private readonly categoriesService = inject(CategoriesService);
@@ -117,31 +130,35 @@ export class HomeComponent implements OnInit {
   }
 
   getProductsData() {
-    this.productsService.getAllProducts().subscribe({
-      next: (res) => {
-        this.allProducts = res.data;
-      },
-      error: (err) => console.log(err),
-      // complete: () => console.log('complete'),
-    });
+    this.allProductsUnsubscribe = this.productsService
+      .getAllProducts()
+      .subscribe({
+        next: (res) => {
+          this.allProducts.set(res.data);
+        },
+        error: (err) => console.log(err),
+        // complete: () => console.log('complete'),
+      });
   }
 
   getCategoryData() {
-    this.categoriesService.getAllCategories().subscribe({
-      next: (res) => {
-        console.log(res.data);
-        this.allCategories = res.data;
-      },
-      error: (err) => console.log(err),
-      // complete: () => console.log('complete'),
-    });
+    this.allCategoriesUnsubscribe = this.categoriesService
+      .getAllCategories()
+      .subscribe({
+        next: (res) => {
+          console.log(res.data);
+          this.allCategories.set(res.data);
+        },
+        error: (err) => console.log(err),
+        // complete: () => console.log('complete'),
+      });
   }
 
   addToCart(id: string) {
     this.cartService.addProductToCart(id).subscribe({
       next: (res) => {
         console.log(res);
-
+        this.cartService.itemsCount.set(res.numOfCartItems);
         this.toastr.success(res.message, 'Essence', {
           timeOut: 2000,
         });
@@ -150,5 +167,10 @@ export class HomeComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.allProductsUnsubscribe.unsubscribe();
+    this.allCategoriesUnsubscribe.unsubscribe();
   }
 }

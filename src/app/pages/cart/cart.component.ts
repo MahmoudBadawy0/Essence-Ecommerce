@@ -1,4 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
 import Swal from 'sweetalert2';
 
 import { RouterLink } from '@angular/router';
@@ -6,6 +15,7 @@ import { CartService } from '../../core/services/cart/cart.service';
 import { ICart } from '../../shared/interfaces/icart';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -13,9 +23,12 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent implements OnInit {
-  numOfItems: number = 0;
-  cardItems: ICart = {} as ICart;
+export class CartComponent implements OnInit, OnDestroy {
+  numOfItems: Signal<number> = computed(() => this.cartService.itemsCount());
+
+  // cardItems: ICart = {} as ICart;
+  cardItems: WritableSignal<ICart> = signal({} as ICart);
+  cardItemsUnsubscribe: Subscription = new Subscription();
 
   private readonly cartService = inject(CartService);
 
@@ -24,10 +37,10 @@ export class CartComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.cartService.getProducts().subscribe({
+    this.cardItemsUnsubscribe = this.cartService.getProducts().subscribe({
       next: (res) => {
-        this.numOfItems = res.numOfCartItems;
-        this.cardItems = res.data;
+        this.cardItems.set(res.data);
+        console.log('card item', this.cardItems());
       },
       error: (err) => {
         console.log(err);
@@ -61,8 +74,8 @@ export class CartComponent implements OnInit {
       next: (res) => {
         console.log(res);
         // this.getAllProducts();
-        this.numOfItems = res.numOfCartItems;
-        this.cardItems = res.data;
+        this.cartService.itemsCount.set(res.numOfCartItems);
+        this.cardItems.set(res.data);
       },
       error: (err) => {
         console.log(err);
@@ -74,8 +87,8 @@ export class CartComponent implements OnInit {
     this.cartService.updateQuantity(id, count).subscribe({
       next: (res) => {
         console.log(res);
-        this.numOfItems = res.numOfCartItems;
-        this.cardItems = res.data;
+        this.cartService.itemsCount.set(res.numOfCartItems);
+        this.cardItems.set(res.data);
       },
       error: (err) => {
         console.log(err);
@@ -107,13 +120,17 @@ export class CartComponent implements OnInit {
   clearCartService() {
     this.cartService.clearCart().subscribe({
       next: (res) => {
+        this.cartService.itemsCount.set(0);
         console.log(res);
-        this.numOfItems = 0;
-        this.cardItems = {} as ICart;
+        this.cardItems.set({} as ICart);
       },
       error: (err) => {
         console.log(err);
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.cardItemsUnsubscribe.unsubscribe();
   }
 }

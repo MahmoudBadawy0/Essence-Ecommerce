@@ -1,98 +1,115 @@
+<section class="bg-gray-50 dark:bg-gray-900 min-h-screen p-6">
+  <div class="container mx-auto">
+    <!-- Page Header -->
+    <h1 class="text-4xl mb-8 text-center font-bold text-[#855825] dark:text-[#c58d5a]">Explore Our Products</h1>
+    <div>
+      <!-- Search and Sort -->
 
+      <div class="mb-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
 
-<div class="max-w-6xl mx-auto px-4 py-16 space-y-12">
-  <!-- Hero Section -->
-  <div class="text-center space-y-4">
-    <h2 class="text-4xl font-bold text-[#855825]">{{ 'about.hero.title' | translate }}</h2>
-    <p class="text-xl text-gray-600">{{ 'about.hero.subtitle' | translate }}</p>
-  </div>
+        <div class="w-full ">
+          <div class="relative">
+            <input type="search" [(ngModel)]="searchInput" placeholder="{{'home.placeholder'|translate}}"
+              aria-label="Search products"
+              class="w-full pl-10 pr-4 py-2 rounded-lg border  focus:border-[#855825] focus:ring-1 focus:ring-[#855825]/40 transition-all">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
 
-  <!-- About Section -->
-  <div class="grid md:grid-cols-2 gap-12 items-center">
-    <div class="space-y-6">
-      <h3 class="text-3xl font-semibold">{{ 'about.about.title' | translate }}</h3>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        {{ 'about.about.description' | translate }}
-      </p>
-
-      <div class="space-y-4">
-        <!-- abouts Feature -->
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 bg-[#855825]/10 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-[#855825]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-            </svg>
           </div>
-          <div>
-            <h4 class="font-bold">{{ 'about.about.features.products.title' | translate }}</h4>
-            <p class="text-gray-600">{{ 'about.about.features.products.description' | translate }}</p>
-          </div>
+
+
         </div>
 
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 bg-[#855825]/10 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-[#855825]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
-              </path>
-            </svg>
-          </div>
-          <div>
-            <h4 class="font-bold">{{ 'about.about.features.security.title' | translate }}</h4>
-            <p class="text-gray-600">{{ 'about.about.features.security.description' | translate }}</p>
-          </div>
-        </div>
 
-        <!-- Curation Feature -->
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 bg-[#855825]/10 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-[#855825]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674zM9 12l2 2 4-4">
-              </path>
-            </svg>
-          </div>
-          <div>
-            <h4 class="font-bold">{{ 'about.about.features.curation.title' | translate }}</h4>
-            <p class="text-gray-600">{{ 'about.about.features.curation.description' | translate }}</p>
-          </div>
-        </div>
+        <select [(ngModel)]="sortInput"
+          class="w-full sm:w-48 px-3 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600">
+          <option selected disabled value=''>sort by</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Women's Fashion</option>
+          <option>Men's Fashion</option>
+          <option>Electronics</option>
+        </select>
+
       </div>
+
+
+
+
+
+      <!-- Product Card -->
+
+      <div
+        class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-9">
+        @for (pr of allProducts() |search:searchInput() | sort:sortInput() | paginate: { itemsPerPage: itemPrPage,
+        currentPage: p }; track pr.id) {
+        <div
+          class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
+
+          <div class="relative overflow-hidden">
+            <a [routerLink]="['/details',pr.id]">
+              <img class="w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
+                [src]="pr.imageCover" [alt]="pr.title" />
+            </a>
+
+
+            <button 
+              class="absolute top-3 right-3 size-8  sm:size-11  bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
+                <i  (click)="addOrRemoveFromWishlist(pr.id)"
+                class="fas fa-heart text-xl sm:text-2xl text-gray-400 group-hover:text-red-700 transition-colors group-hover:animate-pulse"></i>
+
+              </button>
+
+          </div>
+
+
+          <div class="p-5">
+
+            <div class="mb-2">
+              <h4
+                class=" text-center w-fit  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
+                {{pr.category.name}}
+              </h4>
+              <h3
+                class=" text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
+                [title]="pr.title">
+                <a [routerLink]="['/details',pr.id]">{{pr.title.split(" ",3).join(" ")}}</a>
+              </h3>
+            </div>
+
+
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price | currency:"EGP " }}</span>
+              <div class="flex items-center space-x-1">
+                <i class="fas fa-star text-yellow-400"></i>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{pr.ratingsAverage}}</span>
+              </div>
+            </div>
+
+
+            <button (click)="addToCart(pr.id)"
+              class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-[#855825] rounded-lg hover:bg-[#6a4620] focus:ring-4 focus:ring-[#855825]/50 transition-colors">
+              <i class="fas fa-shopping-cart mr-2"></i>
+              {{'home.addToCart'|translate}}
+            </button>
+          </div>
+
+        </div>
+
+        }
+      </div>
+
+
+
+
+
+
+
     </div>
 
-    <img src="/Essence.png" [alt]="'about.hero.title' | translate"
-      class="rounded-xl shadow-lg h-96 w-full object-cover">
-  </div>
-
-  <!-- Why Choose Section -->
-  <div class="text-center py-8">
-    <h3 class="text-3xl font-semibold mb-6 text-[#855825]">
-      {{ 'about.whyChoose.title' | translate }}
-    </h3>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="p-4 bg-white rounded-lg shadow-sm dark:bg-gray-800 border border-gray-100">
-        <h4 class="font-bold mb-2">{{ 'about.whyChoose.features.delivery.title' | translate }}</h4>
-        <p class="text-sm">{{ 'about.whyChoose.features.delivery.description' | translate }}</p>
-      </div>
-
-      <div class="p-4 bg-white rounded-lg shadow-sm dark:bg-gray-800 border border-gray-100">
-        <h4 class="font-bold mb-2">{{ 'about.whyChoose.features.returns.title' | translate }}</h4>
-        <p class="text-sm">{{ 'about.whyChoose.features.returns.description' | translate }}</p>
-      </div>
-
-      <div class="p-4 bg-white rounded-lg shadow-sm dark:bg-gray-800 border border-gray-100">
-        <h4 class="font-bold mb-2">{{ 'about.whyChoose.features.support.title' | translate }}</h4>
-        <p class="text-sm">{{ 'about.whyChoose.features.support.description' | translate }}</p>
-      </div>
+    <!-- Pagination -->
+    <div class="mt-8 flex justify-center">
+      <pagination-controls [responsive]="true" class="my-pagination"
+        (pageChange)="pageChangePagination($event)"></pagination-controls>
     </div>
   </div>
-
-  <!-- Closing Paragraph -->
-  <p class="text-center text-gray-500 text-lg mt-8">
-    {{ 'about.closing' | translate }}
-  </p>
-</div>
+</section>

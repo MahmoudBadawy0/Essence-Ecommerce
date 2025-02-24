@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideToastr } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 
 import { routes } from './app.routes';
 import {
@@ -44,9 +45,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideToastr(),
     importProvidersFrom(
+      NgxPaginationModule,
       NgxSpinnerModule,
       TranslateModule.forRoot({
-        defaultLanguage:'en',
+        defaultLanguage: 'en',
         loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,

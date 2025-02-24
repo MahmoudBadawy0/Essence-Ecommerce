@@ -54,6 +54,15 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/cart/cart.component').then((m) => m.CartComponent),
       },
+
+
+      {
+        path: 'wishlist',
+        title: 'Essence - wishlist',
+        loadComponent: () =>
+          import('./pages/wishlist/wishlist.component').then((m) => m.WishlistComponent),
+      },
+
       {
         path: 'product',
         title: 'Essence - Product',
@@ -62,14 +71,14 @@ export const routes: Routes = [
             (m) => m.ProductComponent
           ),
       },
-      {
-        path: 'categories',
-        title: 'Essence - Categories',
-        loadComponent: () =>
-          import('./pages/categories/categories.component').then(
-            (m) => m.CategoriesComponent
-          ),
-      },
+      // {
+      //   path: 'categories',
+      //   title: 'Essence - Categories',
+      //   loadComponent: () =>
+      //     import('./pages/categories/categories.component').then(
+      //       (m) => m.CategoriesComponent
+      //     ),
+      // },
       {
         path: 'brands',
         title: 'Essence - Brands',
@@ -88,13 +97,19 @@ export const routes: Routes = [
       },
 
       {
+        path: 'about',
+        title: 'Essence - About',
+        loadComponent: () =>
+          import('./pages/about/about.component').then((m) => m.AboutComponent),
+      },
+
+      {
         path: 'details/:id',
         title: 'Essence - Details',
         loadComponent: () =>
           import('./pages/details/details.component').then(
             (m) => m.DetailsComponent
           ),
-        
       },
 
       {

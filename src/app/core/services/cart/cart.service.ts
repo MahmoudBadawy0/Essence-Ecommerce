@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { environments } from '../../environments/environments';
 import { Observable } from 'rxjs';
 
@@ -7,18 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  userToken: any = localStorage.getItem('token');
+  itemsCount: WritableSignal<number> = signal(0);
 
   constructor(private httpClient: HttpClient) {}
 
   addProductToCart(proId: string): Observable<any> {
-    return this.httpClient.post(
-      `${environments.baseUrl}/api/v1/cart`,
-      {
-        productId: proId,
-      }
-
-    );
+    return this.httpClient.post(`${environments.baseUrl}/api/v1/cart`, {
+      productId: proId,
+    });
   }
 
   getProducts(): Observable<any> {
@@ -26,13 +22,9 @@ export class CartService {
   }
 
   updateQuantity(id: string, num: number): Observable<any> {
-    return this.httpClient.put(
-      `${environments.baseUrl}/api/v1/cart/${id}`,
-      {
-        count: num,
-      }
-
-    );
+    return this.httpClient.put(`${environments.baseUrl}/api/v1/cart/${id}`, {
+      count: num,
+    });
   }
 
   removeSpecificCartItem(proId: string): Observable<any> {

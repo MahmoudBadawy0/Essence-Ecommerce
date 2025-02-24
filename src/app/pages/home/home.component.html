@@ -79,7 +79,7 @@
     <div class="bg-gray-50 dark:bg-gray-900">
 
       <owl-carousel-o [options]="customOptions">
-        @for (cat of allCategories ; track cat._id) {
+        @for (cat of allCategories() ; track cat._id) {
 
         <ng-template carouselSlide>
           <div
@@ -106,27 +106,10 @@
 <section class="container mx-auto">
   <h2 class="text-4xl font-semibold  text-gray-900 dark:text-white mb-5">{{'home.headingProducts'|translate}}</h2>
 
-  <!-- product-search-->
-  <div class="max-w-2xl mx-auto mb-8">
 
-    <div class="relative">
-
-      <!-- Search Icon -->
-      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <i class="fa fa-search text-gray-500" aria-hidden="true"></i>
-      </div>
-
-      <!-- Search Input -->
-      <input type="search" [(ngModel)]="searchInput" placeholder="{{'home.placeholder'|translate}}"
-        aria-label="Search products"
-        class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#855825] focus:ring-1 focus:ring-[#855825]/40 transition-all">
-
-
-    </div>
-  </div>
 
   <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-9">
-    @for (pr of allProducts.slice(0,12) |search:searchInput; track pr.id) {
+    @for (pr of allProducts().slice(0,12); track pr.id) {
     <div
       class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
       <!-- Image Section with Badge -->
@@ -181,6 +164,5 @@
     }
   </div>
 
-  <app-topbtn></app-topbtn>
 
 </section>

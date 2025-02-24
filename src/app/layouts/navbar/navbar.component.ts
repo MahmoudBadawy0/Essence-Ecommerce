@@ -1,8 +1,19 @@
-import { Component, inject, input, Input } from '@angular/core';
+import { catchError } from 'rxjs';
+import { WishlistService } from './../../core/services/wishlist/wishlist.service';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  Input,
+  OnInit,
+  Signal,
+} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MyTranslateService } from '../../core/services/myTranslate/my-translate.service';
+import { CartService } from '../../core/services/cart/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +21,42 @@ import { MyTranslateService } from '../../core/services/myTranslate/my-translate
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   // @Input() isLogin:boolean=true
   isLogin = input<boolean>(true);
+  cartCount: Signal<number> = computed(() => this.cartService.itemsCount());
+  wishlistCount: Signal<number> = computed(() =>
+    this.wishlistService.wishlistItemsCount()
+  );
 
   readonly authService = inject(AuthService);
   private readonly myTranslateService = inject(MyTranslateService);
   readonly translateService = inject(TranslateService);
+  private readonly cartService = inject(CartService);
+  private readonly wishlistService = inject(WishlistService);
+
+  ngOnInit(): void {
+    this.getCartCount();
+    this.getWishlistCount();
+  }
+
+  getCartCount() {
+    this.cartService.getProducts().subscribe({
+      next: (res) => {
+        this.cartService.itemsCount.set(res.numOfCartItems);
+        console.log(res);
+      },
+    });
+  }
+
+  getWishlistCount() {
+    this.wishlistService.getWishlist().subscribe({
+      next: (res) => {
+        this.wishlistService.wishlistItemsCount.set(res.count);
+        console.log('wishlistItemsCount', res.count);
+      },
+    });
+  }
 
   change(lang: string) {
     this.myTranslateService.changeLangAndDir(lang);
