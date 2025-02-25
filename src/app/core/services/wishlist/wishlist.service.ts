@@ -11,7 +11,9 @@ export class WishlistService {
 
   wishlistItems: WritableSignal<String[]> = signal([]);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.loadWishlist();
+  }
 
   addToWishlist(prId: string): Observable<any> {
     return this.httpClient.post(`${environments.baseUrl}/api/v1/wishlist`, {
@@ -29,14 +31,20 @@ export class WishlistService {
     return this.httpClient.get(`${environments.baseUrl}/api/v1/wishlist`);
   }
 
-  checkItemInWishlist(prId: string) {
-    const index = this.wishlistItems().findIndex((i) => i === prId);
-
-    if (index === -1) {
-      return false;
-    } else {
-      this.wishlistItems().splice(index, 1);
-      return true;
-    }
+  
+  loadWishlist() {
+    this.getWishlist().subscribe({
+      next: (response) => {
+        const productIds = response.data.map((item: any) => item._id); 
+        this.wishlistItems.set(productIds);
+      },
+      error: (error) => {
+        console.log('Error fetching wishlist:', error);
+      },
+    });
   }
+
+
+
+
 }

@@ -52,12 +52,12 @@
             </a>
 
 
-            <button 
+            <button
               class="absolute top-3 right-3 size-8  sm:size-11  bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
-                <i  (click)="addOrRemoveFromWishlist(pr.id)"
-                class="fas fa-heart text-xl sm:text-2xl text-gray-400 group-hover:text-red-700 transition-colors group-hover:animate-pulse"></i>
-
-              </button>
+              <i (click)="toggleWishlist(pr.id)" [class]="{'text-red-700':isInWishlist(pr.id),
+                'text-gray-400':!isInWishlist(pr.id),'group-hover:animate-pulse':!isInWishlist(pr.id)}"
+                class="fas fa-heart text-xl sm:text-2xl  group-hover:text-red-700 transition-colors "></i>
+            </button>
 
           </div>
 

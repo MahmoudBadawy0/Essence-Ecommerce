@@ -64,10 +64,16 @@
               <div class="flex justify-between items-center">
 
 
-                <button class="text-gray-400 group  hover:text-[#855825]/90 transition-colors "
+                <button (click)="toggleWishlist(item.product.id)"
+                  class="text-gray-400 group  hover:text-[#855825]/90 transition-colors "
                   aria-label="Move to Wishlist item">
-                  <i class="fa fa-heart group-hover:text-red-800 transition-colors" aria-hidden="true"></i>
+                  <i [class]="{'text-red-800':isInWishlist(item.product.id),
+                  'text-gray-400':!isInWishlist(item.product.id)}"
+                    class="fa fa-heart group-hover:text-red-800 transition-colors" aria-hidden="true"></i>
                   {{'cart.moveToWishlist'|translate }}
+
+
+
 
                 </button>
 

@@ -38,12 +38,10 @@ export class ProductComponent {
   p: number = 1;
   itemPrPage: number = 30;
 
-  // wishlistItemsCheck: Signal<String[]> = computed(() =>
-  //   this.wishlistService.wishlistItems()
-  // );
-  // checkExist(prId: string): boolean {
-  //   return this.wishlistItemsCheck().includes(prId);
-  // }
+  wishlistItemsCheck: Signal<String[]> = computed(() =>
+    this.wishlistService.wishlistItems()
+  );
+
 
 
   
@@ -102,7 +100,6 @@ export class ProductComponent {
       next: (response) => {
         this.wishlistService.wishlistItemsCount.set(response.data.length);
         console.log('addToWishlistProduct', response.data.length, response);
-        this.wishlistService.wishlistItems().push(prId);
       },
       error: (error) => {
         console.log(error);
@@ -122,15 +119,33 @@ export class ProductComponent {
     });
   }
 
-  addOrRemoveFromWishlist(prId: string) {
-    if (this.wishlistService.checkItemInWishlist(prId)) {
+
+  toggleWishlist(prId:string): void {
+    if (this.wishlistItemsCheck().includes(prId))
+    {this.wishlistService.wishlistItems().splice(this.wishlistService.wishlistItems().findIndex((i) => i === prId),1); // Remove item in component
       this.removeFromWishlist(prId);
       console.log('removed : ', prId);
     } else {
       this.addToWishlist(prId);
+      this.wishlistService.wishlistItems().push(prId); // Add item in component
       console.log('added : ', prId);
     }
   }
+
+
+  isInWishlist(prId:string): boolean {
+    return this.wishlistItemsCheck().includes(prId);
+  }
+
+
+
+
+
+
+
+
+
+
 
   ngOnDestroy(): void {
     this.allProductsUnSubscription.unsubscribe();

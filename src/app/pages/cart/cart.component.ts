@@ -16,6 +16,8 @@ import { ICart } from '../../shared/interfaces/icart';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -26,11 +28,17 @@ import { Subscription } from 'rxjs';
 export class CartComponent implements OnInit, OnDestroy {
   numOfItems: Signal<number> = computed(() => this.cartService.itemsCount());
 
+  wishlistItemsCheck: Signal<String[]> = computed(() =>
+    this.wishlistService.wishlistItems()
+  );
+
   // cardItems: ICart = {} as ICart;
   cardItems: WritableSignal<ICart> = signal({} as ICart);
   cardItemsUnsubscribe: Subscription = new Subscription();
 
   private readonly cartService = inject(CartService);
+  private readonly wishlistService = inject(WishlistService);
+  private readonly toastr = inject(ToastrService);
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -129,6 +137,49 @@ export class CartComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  addToWishlist(prId: string) {
+    this.wishlistService.addToWishlist(prId).subscribe({
+      next: (response) => {
+        this.wishlistService.wishlistItemsCount.set(response.data.length);
+        console.log('addToWishlistProduct', response.data.length, response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  removeFromWishlist(prId: string) {
+    this.wishlistService.removeFromWishlist(prId).subscribe({
+      next: (response) => {
+        this.wishlistService.wishlistItemsCount.set(response.data.length);
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+
+  toggleWishlist(prId:string): void {
+    if (this.wishlistItemsCheck().includes(prId))
+    {this.wishlistService.wishlistItems().splice(this.wishlistService.wishlistItems().findIndex((i) => i === prId),1); // Remove item in component
+      this.removeFromWishlist(prId);
+      console.log('removed : ', prId);
+    } else {
+      this.addToWishlist(prId);
+      this.wishlistService.wishlistItems().push(prId); // Add item in component
+      console.log('added : ', prId);
+    }
+  }
+
+
+  isInWishlist(prId:string): boolean {
+    return this.wishlistItemsCheck().includes(prId);
+  }
+
 
   ngOnDestroy(): void {
     this.cardItemsUnsubscribe.unsubscribe();

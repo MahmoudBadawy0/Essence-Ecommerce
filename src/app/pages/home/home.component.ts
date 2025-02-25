@@ -1,9 +1,11 @@
 import Swal from 'sweetalert2';
 import {
   Component,
+  computed,
   inject,
   OnDestroy,
   OnInit,
+  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
@@ -21,6 +23,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TopbtnComponent } from '../../shared/components/ui/topbtn/topbtn.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +38,11 @@ import { Subscription } from 'rxjs';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
+  wishlistItemsCheck: Signal<String[]> = computed(() =>
+    this.wishlistService.wishlistItems()
+  );
+
   // allProducts: IProduct[] = [];
   allProducts: WritableSignal<IProduct[]> = signal([]);
 
@@ -49,6 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly productsService = inject(ProductsService);
   private readonly categoriesService = inject(CategoriesService);
   private readonly cartService = inject(CartService);
+  private readonly wishlistService = inject(WishlistService);
   private readonly toastr = inject(ToastrService);
 
   customOptions: OwlOptions = {
@@ -173,4 +182,49 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.allProductsUnsubscribe.unsubscribe();
     this.allCategoriesUnsubscribe.unsubscribe();
   }
+
+
+  addToWishlist(prId: string) {
+    this.wishlistService.addToWishlist(prId).subscribe({
+      next: (response) => {
+        this.wishlistService.wishlistItemsCount.set(response.data.length);
+        console.log('addToWishlistProduct', response.data.length, response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  removeFromWishlist(prId: string) {
+    this.wishlistService.removeFromWishlist(prId).subscribe({
+      next: (response) => {
+        this.wishlistService.wishlistItemsCount.set(response.data.length);
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+
+  toggleWishlist(prId:string): void {
+    if (this.wishlistItemsCheck().includes(prId))
+    {this.wishlistService.wishlistItems().splice(this.wishlistService.wishlistItems().findIndex((i) => i === prId),1); // Remove item in component
+      this.removeFromWishlist(prId);
+      console.log('removed : ', prId);
+    } else {
+      this.addToWishlist(prId);
+      this.wishlistService.wishlistItems().push(prId); // Add item in component
+      console.log('added : ', prId);
+    }
+  }
+
+
+  isInWishlist(prId:string): boolean {
+    return this.wishlistItemsCheck().includes(prId);
+  }
+
+
 }

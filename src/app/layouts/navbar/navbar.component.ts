@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.getCartCount();
     this.getWishlistCount();
+    this.wishlistService.loadWishlist();
   }
 
   getCartCount() {
