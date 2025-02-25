@@ -1,49 +1,45 @@
 @if(wishlistData().length > 0){
-
-<section>
-
-  <div class="container mx-auto p-8 ">
+<section class="min-h-screen dark:bg-gray-900">
+  <div class="container mx-auto p-8">
     <h1 class="text-3xl font-light text-[#855825] dark:text-[#c58d5a] mb-8">Saved Items({{wishlistData().length}})</h1>
 
     <div class="space-y-4">
-      <!-- Wishlist Item -->
       @for (pro of wishlistData(); track pro.id) {
-      <div class="flex items-center justify-between  bg-gray-50 p-4 border-b dark:border-gray-700 relative">
+      <div
+        class="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-4 border-b dark:border-gray-700 relative">
         <div class="flex items-center space-x-4">
           <img [routerLink]="['/details',pro.id]" [src]="pro.imageCover"
-            class="w-24 h-24 object-contain cursor-pointer">
+            class="w-24 h-24 object-contain cursor-pointer dark:brightness-90">
           <div class="space-y-2">
-            <h3 [routerLink]="['/details',pro.id]" class="cursor-pointer font-medium dark:text-white">{{pro.title}}</h3>
+            <h3 [routerLink]="['/details',pro.id]" class="cursor-pointer font-medium dark:text-gray-200">{{pro.title}}
+            </h3>
             <p class="text-[#855825] dark:text-[#c58d5a]">{{pro.price| currency:'EGP '}}</p>
           </div>
         </div>
-        <div class="flex items-center space-x-6 ">
-          <button (click)="addToCart(pro.id)" class="text-gray-500 hover:text-[#855825] ">
+        <div class="flex items-center ">
+          <button (click)="addToCart(pro.id)"
+            class="text-gray-500 hover:text-[#855825] dark:hover:text-[#c58d5a] transition-colors">
             <i class="fas fa-cart-plus text-xl"></i>
           </button>
-          <button (click)="removeItemAlert(pro.id)" class="text-gray-500 hover:text-red-600 ">
+          <button (click)="removeItemAlert(pro.id)"
+            class="text-gray-500 hover:text-red-600 ms-6 dark:hover:text-red-500 transition-colors">
             <i class="fas fa-times text-2xl"></i>
           </button>
         </div>
       </div>
-
       }
-
     </div>
   </div>
 </section>
 }
 @else{
-<div class=" mx-auto px-4 py-16 text-center">
+<div class="mx-auto px-4 py-16 text-center min-h-screen dark:bg-gray-900">
   <div class="space-y-6">
-    <!-- Animated Cart Icon -->
     <div class="relative flex items-center justify-center mx-auto w-20 h-20">
-      <div class="absolute  inset-0 bg-[#855825]/20 rounded-full animate-pulse">
-      </div>
-      <i class="fas fa-heart text-4xl text-[#855825] dark:text-[#c58d5a] "></i>
+      <div class="absolute inset-0 bg-[#855825]/20 dark:bg-[#c58d5a]/30 rounded-full animate-pulse"></div>
+      <i class="fas fa-heart text-4xl text-[#855825] dark:text-[#c58d5a]"></i>
     </div>
 
-    <!-- Message -->
     <div class="space-y-3">
       <h2 class="text-3xl font-bold text-[#855825] dark:text-[#c58d5a]">
         Your Wishlist is Empty
@@ -53,28 +49,23 @@
       </p>
     </div>
 
-    <!-- Action Button -->
-    <button routerLink="/product" class="px-8 py-3 bg-[#855825] hover:bg-[#6a4620] text-white rounded-full 
-                transition-all transform hover:scale-105 shadow-lg">
-                Browse Products
+    <button routerLink="/product" class="px-8 py-3 bg-[#855825] hover:bg-[#6a4620] dark:bg-[#c58d5a] dark:hover:bg-[#b87d42] text-white rounded-full 
+                     transition-all transform hover:scale-105 shadow-lg">
+      Browse Products
     </button>
 
-    <!-- Decorative Elements -->
-    <div dir="ltr" class="mt-12 opacity-25 space-y-4">
-
-      <div class=" flex justify-center items-center space-x-8 animate-pulse">
-        <div class="w-8 h-8 bg-[#855825]/40 rounded-full"></div>
-        <div class="w-12 h-12 bg-[#c58d5a]/40 rounded-lg rotate-45"></div>
-        <div class="w-8 h-8 bg-[#855825]/40 rounded-full"></div>
+    <div dir="ltr" class="mt-12 opacity-25 dark:opacity-35 space-y-4">
+      <div class="flex justify-center items-center space-x-8 animate-pulse">
+        <div class="w-8 h-8 bg-[#855825]/40 dark:bg-[#c58d5a]/40 rounded-full"></div>
+        <div class="w-12 h-12 bg-[#c58d5a]/30 dark:bg-[#855825]/30 rounded-lg rotate-45"></div>
+        <div class="w-8 h-8 bg-[#855825]/40 dark:bg-[#c58d5a]/40 rounded-full"></div>
       </div>
 
-      <div class="flex justify-center space-x-6  ">
-        <div class="w-16 h-1 bg-[#c58d5a]/30 rounded-full  "></div>
-        <div class="w-16 h-1 bg-[#855825]/30 rounded-full  "></div>
+      <div class="flex justify-center space-x-6">
+        <div class="w-16 h-1 bg-[#c58d5a]/30 dark:bg-[#855825]/30 rounded-full"></div>
+        <div class="w-16 h-1 bg-[#855825]/30 dark:bg-[#c58d5a]/30 rounded-full"></div>
       </div>
-
     </div>
-
   </div>
 </div>
 }

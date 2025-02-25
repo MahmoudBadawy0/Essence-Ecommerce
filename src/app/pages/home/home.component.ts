@@ -69,8 +69,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     dots: false,
     navSpeed: 700,
     navText: [
-      '<i class="fas fa-chevron-right text-[#855825] dark:text-white"></i>',
-      '<i class="fas fa-chevron-left text-[#855825] dark:text-white"></i>',
+      '<i class="fas fa-chevron-right text-[#855825] dark:text-black"></i>',
+      '<i class="fas fa-chevron-left text-[#855825] dark:text-black"></i>',
     ],
     responsive: {
       0: {

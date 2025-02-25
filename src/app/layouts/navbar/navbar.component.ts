@@ -14,6 +14,7 @@ import { AuthService } from '../../core/services/auth/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MyTranslateService } from '../../core/services/myTranslate/my-translate.service';
 import { CartService } from '../../core/services/cart/cart.service';
+import { DarkmodeService } from '../../core/services/darkmode/darkmode.service';
 
 @Component({
   selector: 'app-navbar',
@@ -34,12 +35,20 @@ export class NavbarComponent implements OnInit {
   readonly translateService = inject(TranslateService);
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
+   readonly darkmodeService = inject(DarkmodeService);
 
   ngOnInit(): void {
     this.getCartCount();
     this.getWishlistCount();
     this.wishlistService.loadWishlist();
   }
+
+
+
+  toggleDarkMode() {
+    this.darkmodeService.updateDarkMode();
+  }
+
 
   getCartCount() {
     this.cartService.getProducts().subscribe({

@@ -11,7 +11,7 @@
           <div class="relative">
             <input type="search" [(ngModel)]="searchInput" placeholder="{{'home.placeholder'|translate}}"
               aria-label="Search products"
-              class="w-full pl-10 pr-4 py-2 rounded-lg border  focus:border-[#855825] focus:ring-1 focus:ring-[#855825]/40 transition-all">
+              class="w-full pl-10 pr-4 py-2 rounded-lg border dark:bg-gray-200  focus:border-[#855825] focus:ring-1 focus:ring-[#855825]/40 transition-all">
             <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
 
           </div>
@@ -21,7 +21,7 @@
 
 
         <select [(ngModel)]="sortInput"
-          class="w-full sm:w-48 px-3 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600">
+          class="w-full sm:w-48 px-3 py-2 border rounded-lg dark:bg-gray-200 dark:border-gray-600">
           <option selected disabled value=''>sort by</option>
           <option>Price: Low to High</option>
           <option>Price: High to Low</option>
@@ -47,7 +47,7 @@
 
           <div class="relative overflow-hidden">
             <a [routerLink]="['/details',pr.id]">
-              <img class="w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
+              <img class=" w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
                 [src]="pr.imageCover" [alt]="pr.title" />
             </a>
 
@@ -66,11 +66,11 @@
 
             <div class="mb-2">
               <h4
-                class=" text-center w-fit  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
+                class=" text-center w-fit  dark:text-yellow-500  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
                 {{pr.category.name}}
               </h4>
               <h3
-                class=" text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
+                class=" text-lg font-bold text-gray-900 dark:text-white  dark:hover:text-white  mt-2 hover:text-[#855825] transition-colors truncate"
                 [title]="pr.title">
                 <a [routerLink]="['/details',pr.id]">{{pr.title.split(" ",3).join(" ")}}</a>
               </h3>

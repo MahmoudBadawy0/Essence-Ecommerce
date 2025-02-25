@@ -42,6 +42,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.wishlistService.loadWishlist();
   }
 
   getAllProducts() {

@@ -14,22 +14,35 @@
 
         <div class="relative h-full flex items-center justify-center   ">
 
-          <div
-            class=" px-7  py-9 rounded-3xl text-gray-100 text-center animate-fadeIn backdrop-blur-none   bg-white/10 shadow-sm">
 
-            <h1 class="text-4xl  md:text-6xl  font-bold opacity-0 animate-fadeIn ">{{'home.title' | translate}}
-              <span class="text-[#855825] block">Essence</span>
+
+          <div class="px-7 py-9 rounded-[2rem] text-center animate-fadeIn 
+          backdrop-blur-none bg-gradient-to-br from-white/20 to-white/5 border
+           border-white/30 dark:border-gray-700/50 shadow-2xl shadow-gray-200/30
+            dark:shadow-gray-900/30 hover:shadow-3xl transition-all duration-300 group">
+
+            <h1
+              class="text-4xl md:text-6xl font-bold opacity-0 animate-fadeIn bg-gradient-to-r from-[#855825] to-amber-700 bg-clip-text text-transparent dark:from-[#c58d5a] dark:to-amber-400">
+              {{'home.title' | translate}}
+              <span class="block mt-2 text-slate-200 dark:text-gray-100 normal-case">Essence</span>
             </h1>
 
-            <p class="text-lg md:text-2xl opacity-0 font-light  animate-fadeIn mb-5 ">{{'home.subtitle' | translate}}
+            <p
+              class="text-lg md:text-xl opacity-0 animate-fadeIn mb-6 mt-4 text-slate-200 dark:text-gray-300 font-medium leading-relaxed max-w-2xl mx-auto">
+              {{'home.subtitle' | translate}}
             </p>
-            <a routerLink="/product"
-              class="px-3 py-2  opacity-0  animate-fadeIn md:px-6 md:py-3 bg-white text-black font-bold rounded-full shadow-lg hover:bg-gray-200  ">
-              {{'home.cta'|translate }}
+
+            <a routerLink="/product" class="opacity-0 animate-fadeIn inline-flex items-center justify-center gap-2 px-8 py-3.5 
+              font-semibold rounded-full bg-[#855825] text-white
+               hover:bg-[#6d481f] dark:bg-gray-800 dark:hover:bg-gray-700
+               transition-all transform  shadow-lg 
+               hover:shadow-xl">
+              <span>{{'home.cta'|translate }}</span>
+              <i class="fas fa-arrow-right text-sm"></i>
             </a>
-
-
           </div>
+
+
 
         </div>
 
@@ -71,9 +84,9 @@
 </section> -->
 
 
-<section class="container mx-auto">
-  <div class="py-6 px-4 my-3">
-    <h2 class="text-[32px] font-semibold  text-gray-900 dark:text-white mb-5">{{'home.headingCategories'|translate}}
+<section class="bg-gray-50 dark:bg-gray-900 ">
+  <div class="container mx-auto py-6 px-4">
+    <h2 class="text-[32px] font-semibold  text-gray-900 dark:text-[#c58d5a] mb-5">{{'home.headingCategories'|translate}}
     </h2>
 
     <div class="bg-gray-50 dark:bg-gray-900">
@@ -103,66 +116,71 @@
   </div>
 </section>
 
-<section class="container mx-auto">
-  <h2 class="text-4xl font-semibold  text-gray-900 dark:text-white mb-5">{{'home.headingProducts'|translate}}</h2>
+<section class=" bg-gray-50 dark:bg-gray-900 pb-10">
+
+  <div class="container mx-auto ">
+
+    <h2 class="text-4xl font-semibold  text-gray-900 dark:text-[#c58d5a] mb-5">{{'home.headingProducts'|translate}}</h2>
 
 
 
-  <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-9">
-    @for (pr of allProducts().slice(0,12); track pr.id) {
-    <div
-      class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
-      <!-- Image Section with Badge -->
-      <div class="relative overflow-hidden">
-        <a [routerLink]="['/details',pr.id]">
-          <img class="w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
-            [src]="pr.imageCover" [alt]="pr.title" />
-        </a>
-        <!-- Favorite Button -->
-        <button
-          class="absolute top-3 right-3 size-8  sm:size-11  bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
-          <i (click)="toggleWishlist(pr.id)" [class]="{'text-red-700':isInWishlist(pr.id),
-          'text-gray-400':!isInWishlist(pr.id),'group-hover:animate-pulse':!isInWishlist(pr.id)}"
-            class="fas fa-heart text-xl sm:text-2xl  group-hover:text-red-700 transition-colors "></i>
-        </button>
+    <div class="grid justify-center grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8 sm:gap-9">
+      @for (pr of allProducts().slice(0,12); track pr.id) {
+      <div
+        class="sm:max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/30">
+        <!-- Image Section with Badge -->
+        <div class="relative overflow-hidden">
+          <a [routerLink]="['/details',pr.id]">
+            <img class="w-full h-[255px] object-contain hover:scale-105 transition-transform duration-[400ms]"
+              [src]="pr.imageCover" [alt]="pr.title" />
+          </a>
+          <!-- Favorite Button -->
+          <button
+            class="absolute top-3 right-3 size-8  sm:size-11  bg-white/90 rounded-full group shadow-sm transition-all hover:scale-110 hover:shadow-md dark:bg-gray-700/90">
+            <i (click)="toggleWishlist(pr.id)" [class]="{'text-red-700':isInWishlist(pr.id),
+              'text-gray-400':!isInWishlist(pr.id),'group-hover:animate-pulse':!isInWishlist(pr.id)}"
+              class="fas fa-heart text-xl sm:text-2xl  group-hover:text-red-700 transition-colors "></i>
+          </button>
 
-      </div>
-
-      <!-- Product Details -->
-      <div class="p-5">
-        <!-- Category & Title -->
-        <div class="mb-2">
-          <h4
-            class=" text-center w-fit  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
-            {{pr.category.name}}
-          </h4>
-          <h3
-            class=" text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
-            [title]="pr.title">
-            <a [routerLink]="['/details',pr.id]">{{pr.title.split(" ",3).join(" ")}}</a>
-          </h3>
         </div>
 
-        <!-- Price and Rating -->
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price | currency:"EGP " }}</span>
-          <div class="flex items-center space-x-1">
-            <i class="fas fa-star text-yellow-400"></i>
-            <span class="text-sm text-gray-500 dark:text-gray-400">{{pr.ratingsAverage}}</span>
+        <!-- Product Details -->
+        <div class="p-5">
+          <!-- Category & Title -->
+          <div class="mb-2">
+            <h4
+              class=" text-center w-fit  text-xs text-[#855825] font-semibold uppercase tracking-wide bg-[#855825]/10 px-2 py-1 rounded-full">
+              {{pr.category.name}}
+            </h4>
+            <h3
+              class=" text-lg font-bold text-gray-900 dark:text-white mt-2 hover:text-[#855825] transition-colors truncate"
+              [title]="pr.title">
+              <a [routerLink]="['/details',pr.id]">{{pr.title.split(" ",3).join(" ")}}</a>
+            </h3>
           </div>
+
+          <!-- Price and Rating -->
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-lg font-bold text-[#855825] dark:text-[#a3724a]">{{pr.price | currency:"EGP " }}</span>
+            <div class="flex items-center space-x-1">
+              <i class="fas fa-star text-yellow-400"></i>
+              <span class="text-sm text-gray-500 dark:text-gray-400">{{pr.ratingsAverage}}</span>
+            </div>
+          </div>
+
+          <!-- Add to Cart Button -->
+          <button (click)="addToCart(pr.id)"
+            class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-[#855825] rounded-lg hover:bg-[#6a4620] focus:ring-4 focus:ring-[#855825]/50 transition-colors">
+            <i class="fas fa-shopping-cart mr-2"></i>
+            {{'home.addToCart'|translate}}
+          </button>
         </div>
 
-        <!-- Add to Cart Button -->
-        <button (click)="addToCart(pr.id)"
-          class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-[#855825] rounded-lg hover:bg-[#6a4620] focus:ring-4 focus:ring-[#855825]/50 transition-colors">
-          <i class="fas fa-shopping-cart mr-2"></i>
-          {{'home.addToCart'|translate}}
-        </button>
       </div>
 
+      }
     </div>
 
-    }
   </div>
 
 
