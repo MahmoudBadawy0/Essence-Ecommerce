@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../../core/services/order/order.service';
+import { CartService } from '../../core/services/cart/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -52,6 +53,7 @@ export class CheckoutComponent implements OnInit {
 
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly orderService = inject(OrderService);
+  private readonly cartService = inject(CartService);
   private readonly router = inject(Router);
 
   ngOnInit(): void {
@@ -121,9 +123,12 @@ export class CheckoutComponent implements OnInit {
         .cashOrder(this.checkoutForm.value, this.cartId)
         .subscribe({
           next: (res) => {
-            console.log(res);
-            this.isLoading = false;
-            this.router.navigate(['/allorders']);
+            if (res.status === 'success') {
+              console.log(res);
+              this.isLoading = false;
+              this.router.navigate(['/allorders']);
+              this.cartService.itemsCount.set(0);
+            }
           },
           error: (err) => {
             console.log(err);

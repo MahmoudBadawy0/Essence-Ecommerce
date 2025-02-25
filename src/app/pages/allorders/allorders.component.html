@@ -5,9 +5,9 @@
     <h1 class=" text-2xl sm:text-3xl font-bold text-[#855825]">{{'orders.title'|translate }} </h1>
   </div>
 
-  <div class=" grid grid-cols-2  lg:grid-cols-3 gap-4">
+  <div class=" grid grid-cols-2  lg:grid-cols-3 gap-8">
     @for (or of allOrders(); track or._id) {
-    <div class="p-4 sm:p-6 bg-gray-50 border-2 border-gray-100 rounded-lg  hover:shadow-lg transition-shadow">
+    <div class="p-4 max-w-sm sm:p-6 bg-gray-50 border-2 border-gray-100 rounded-lg  hover:shadow-lg transition-shadow">
       <!-- Header -->
 
       <div class="text-center mb-4">
