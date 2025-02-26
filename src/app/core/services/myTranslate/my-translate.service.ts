@@ -26,13 +26,16 @@ export class MyTranslateService {
       this.translateService.setDefaultLang('en');
 
       //get lang from local
-      // localStorage.getItem('lang') ? this.translateService.use(localStorage.getItem('lang')!) : this.translateService.use('en');
-      const savedLang = localStorage.getItem('lang');
+      localStorage.getItem('lang')
+        ? this.translateService.use(localStorage.getItem('lang')!)
+        : this.translateService.use('en');
+      
+      // const savedLang = localStorage.getItem('lang');
 
       //use lang in local
-      if (savedLang) {
-        this.translateService.use(savedLang!);
-      }
+      // if (savedLang) {
+      //   this.translateService.use(savedLang!);
+      // }
 
       this.changeDir();
     }
