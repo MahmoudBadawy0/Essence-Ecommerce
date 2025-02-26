@@ -49,7 +49,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cardItemsUnsubscribe = this.cartService.getProducts().subscribe({
       next: (res) => {
         this.cardItems.set(res.data);
-        console.log('card item', this.cardItems());
       },
       error: (err) => {
         console.log(err);
@@ -81,7 +80,6 @@ export class CartComponent implements OnInit, OnDestroy {
   removeItemService(id: string) {
     this.cartService.removeSpecificCartItem(id).subscribe({
       next: (res) => {
-        console.log(res);
         // this.getAllProducts();
         this.cartService.itemsCount.set(res.numOfCartItems);
         this.cardItems.set(res.data);
@@ -95,7 +93,6 @@ export class CartComponent implements OnInit, OnDestroy {
   updateItemQuantity(id: string, count: number) {
     this.cartService.updateQuantity(id, count).subscribe({
       next: (res) => {
-        console.log(res);
         this.cartService.itemsCount.set(res.numOfCartItems);
         this.cardItems.set(res.data);
       },
@@ -130,7 +127,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.clearCart().subscribe({
       next: (res) => {
         this.cartService.itemsCount.set(0);
-        console.log(res);
         this.cardItems.set({} as ICart);
       },
       error: (err) => {
@@ -143,7 +139,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.wishlistService.addToWishlist(prId).subscribe({
       next: (response) => {
         this.wishlistService.wishlistItemsCount.set(response.data.length);
-        console.log('addToWishlistProduct', response.data.length, response);
       },
       error: (error) => {
         console.log(error);
@@ -155,7 +150,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.wishlistService.removeFromWishlist(prId).subscribe({
       next: (response) => {
         this.wishlistService.wishlistItemsCount.set(response.data.length);
-        console.log(response);
       },
       error: (error) => {
         console.log(error);
@@ -168,11 +162,9 @@ export class CartComponent implements OnInit, OnDestroy {
     if (this.wishlistItemsCheck().includes(prId))
     {this.wishlistService.wishlistItems().splice(this.wishlistService.wishlistItems().findIndex((i) => i === prId),1); // Remove item in component
       this.removeFromWishlist(prId);
-      console.log('removed : ', prId);
     } else {
       this.addToWishlist(prId);
       this.wishlistService.wishlistItems().push(prId); // Add item in component
-      console.log('added : ', prId);
     }
   }
 

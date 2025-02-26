@@ -1,4 +1,3 @@
-import { catchError } from 'rxjs';
 import { WishlistService } from './../../core/services/wishlist/wishlist.service';
 import {
   Component,
@@ -35,7 +34,7 @@ export class NavbarComponent implements OnInit {
   readonly translateService = inject(TranslateService);
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
-   readonly darkmodeService = inject(DarkmodeService);
+  readonly darkmodeService = inject(DarkmodeService);
 
   ngOnInit(): void {
     this.getCartCount();
@@ -43,18 +42,19 @@ export class NavbarComponent implements OnInit {
     this.wishlistService.loadWishlist();
   }
 
-
+  isMenuOpen = false;
+  toggleMobileMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   toggleDarkMode() {
     this.darkmodeService.updateDarkMode();
   }
 
-
   getCartCount() {
     this.cartService.getProducts().subscribe({
       next: (res) => {
         this.cartService.itemsCount.set(res.numOfCartItems);
-        console.log(res);
       },
     });
   }
@@ -63,7 +63,6 @@ export class NavbarComponent implements OnInit {
     this.wishlistService.getWishlist().subscribe({
       next: (res) => {
         this.wishlistService.wishlistItemsCount.set(res.count);
-        console.log('wishlistItemsCount', res.count);
       },
     });
   }

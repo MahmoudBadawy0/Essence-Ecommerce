@@ -41,7 +41,6 @@ export class WishlistComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response) => {
           this.wishlistData.set(response.data);
-          console.log('wishlistData', response);
         },
         error: (error) => {
           console.log(error);
@@ -54,7 +53,6 @@ export class WishlistComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.getWishlist();
         this.wishlistService.wishlistItemsCount.set(response.data.length);
-        console.log(response);
         this.toastr.success(response.message, 'Essence', {
           timeOut: 2000,
         });
